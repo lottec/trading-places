@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// Riak node module
+var RiakPBC = require('riakpbc');
+var riak = RiakPBC.createClient(/* options */);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
