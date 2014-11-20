@@ -3,7 +3,19 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form(name="register", action="/register", method="post")
-    input(type="text", name="user")
-    input(type="password",name="pass")
-    input(type="submit", value="register")
+  if user
+    div.welcomebox
+      // Filtered inline output
+      p.
+        Welcome, #{user}
+  else
+    div.loginbox
+      form(name="login", action="/users/login", method="post")
+        input(type="text", name="user")
+        input(type="password", name="pass")
+        input(type="submit", value="login")
+    div.register-button
+      button(type="button", onclick="location.href='/register';").
+        Register
+
+
