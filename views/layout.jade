@@ -3,6 +3,22 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    //nav icon
+    script(src='/javascript/jquery-1.11.1.min.js')
+    script(src='/javascript/javascript.js')
   body
-    block content
+    div(class='navigation-button')
+      span —
+    div(class='navigation-container')
+      div(class='header-text')
+        h1 Gru's Name
+      div(class='navigation-items')
+        div(class='navigation-item')
+          span(class='navigation-item-text') Search
+        div(class='navigation-item')
+          div(class='navigation-item-badge')
+            span 2
+          span(class='navigation-item-text selected') Manage
+      div(class='navigation-bottom-bar')
+        span Logout
+    div(class='content-wrapper')
+      block content
