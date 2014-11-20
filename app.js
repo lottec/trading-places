@@ -8,7 +8,7 @@ var RiakPBC = require('riakpbc');
 var riak = RiakPBC.createClient(/* options */);
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 var register = require('./routes/register');
 
 var app = express();
@@ -72,8 +72,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// define routes here
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', routes);
 app.use('/register', register);
 
 // catch 404 and forward to error handler
