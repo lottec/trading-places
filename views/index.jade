@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(name="register", action="/register", method="put")
+    input(type="text", name="user")
+    input(type="password", name="pass")
+    input(type="submit", value="register")
