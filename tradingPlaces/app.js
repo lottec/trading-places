@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// Riak node module
 var RiakPBC = require('riakpbc');
 var riak = RiakPBC.createClient(/* options */);
 
@@ -14,13 +13,51 @@ var users = require('./routes/users');
 var app = express();
 
 var server = app.listen(3000, function () {
-
     var host = server.address().address
     var port = server.address().port
 
     console.log('Example app listening at http://%s:%s', host, port)
+});
 
-})
+
+/** Riak Testing **/
+
+// var keys = riak.getKeys({ bucket: 'apptest' }, function(err, response) {
+//     if (err) {
+//         console.error('An error occurred:', err);
+//     }
+//     if (response) {
+//       response.keys.forEach(function(key) {
+//         riak.get({bucket: 'apptest', key: key}, function (err, rep) {
+//           console.log('Key: ', key, err?err:rep);
+//         });
+//       });
+//     }
+// });
+
+
+// var request = {
+//         bucket: 'apptest',
+//         key: 'helloworld',
+//         content: {
+//             test: 'Hello World!'
+//         }
+//     };
+
+
+//riak.del({bucket: 'apptest', key: 'helloworld'}, function (err, rep) {
+//    console.log('Deleted object', err?err:rep);
+//});
+
+//riak.put(request, function (err, rep) {
+//    console.log('Inserted object (PUT)', err, rep);
+//});
+
+//riak.get({bucket: 'apptest', key: 'helloworld'}, function (err, rep) {
+//    console.log('Found object (GET)', err, rep);
+//});
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
