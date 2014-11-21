@@ -16,6 +16,7 @@ html
       div(class='navigation-item')
         span(class='navigation-item-text') Find
       div(class='right-container')
-        span(class='logout-text') Gru's Name ▼
+        if user
+          span(class='logout-text') #{user.name} ▼
     div(class='content-wrapper')
       block content
