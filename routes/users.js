@@ -3,16 +3,15 @@ var router = express.Router();
 //var bcrypt = require('bcrypt');
 
 router.post('/register', function(req, res){
-  //console.log(req.body.userName);
-  res.render('index', { title: 'Registered!!', user: req.body.name});
-
+  var userName = req.body.user;
+  res.redirect('/');
 });
 
 router.post('/login', function(req, res) {
   console.log('login here');
-  var userName = req.body.user;
-  //var password = req.body.password;
-  res.render('index', { title: 'Trading Places', user: userName});
+  //var userName = req.body.user;
+  //req.session.user = {user: userName};
+  res.send();
 });
 
 //router.get('/isLoggedIn', function(req, res){
@@ -22,7 +21,6 @@ router.post('/login', function(req, res) {
 //    res.send();
 //  }
 //});
-//
 //router.get('/logout', function(req, res) {
 //  if (req.session.user) {
 //    req.session.user = null;
