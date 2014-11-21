@@ -82,18 +82,20 @@ input[type=submit] {
 .navigation-container {
   top: 0;
   left: 0;
-  width: 230px;
-  min-height: 100%;
-  position: absolute;
+  min-width: 100%;
+  min-height: 50px;
+  position: fixed;
   background: #181818;
   color: #ffffff;
-  display: none;
   z-index: 1000;
 }
 
 .navigation-container div.header-text {
   padding: 5px;
   text-align: center;
+  display: inline-block;
+  margin-right: 100px;
+  margin-left: 20px;
 }
 
 .navigation-container .header-text h1 {
@@ -105,25 +107,49 @@ input[type=submit] {
 
 .navigation-container .navigation-items {
   padding: 15px;
+  display: inline-block;
+  height: 30px;
 }
 
-.navigation-container .navigation-items .navigation-item {
-  margin: 0 auto;
-  margin-bottom: 25px;
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
-  background: rgba(255, 255, 255, 0.05);
+.navigation-container .navigation-item {
+  text-align: center;
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.navigation-container .navigation-item:hover {
+
+}
+
+.navigation-container .navigation-item:active {
+
+}
+
+.navigation-container .right-container {
+  display: inline-block;
+  float: right;
   text-align: center;
 }
 
-.navigation-container .navigation-items .navigation-item:hover {
-  background: rgba(255, 255, 255, 0.07);
+.navigation-container .right-container span.logout-text {
+  color: #ffffff;
+  font-family: 'HelveticaNeue-Medium';
+  font-size: 14px;
+  line-height: 50px;
+  margin-right: 20px;
 }
 
-.navigation-container .navigation-items .navigation-item:active {
-  background: rgba(0, 0, 0, 1.0);
+.navigation-container .navigation-item span.navigation-item-text {
+  color: #ffffff;
+  font-family: 'HelveticaNeue-Medium';
+  font-size: 14px;
 }
+
+.navigation-container .navigation-item span.selected {
+  color: #8FCCAB;
+}
+
+
 
 .navigation-container .navigation-items .navigation-item-badge {
   height: 30px;
@@ -141,18 +167,6 @@ input[type=submit] {
   color: #ffffff;
   font-family: 'HelveticaNeue', sans-serif;
   font-size: 15px;
-}
-
-.navigation-container .navigation-items .navigation-item span.navigation-item-text {
-  line-height: 120px;
-  color: #ffffff;
-  font-family: 'CodeProLight';
-  font-size: 16px;
-  text-transform: uppercase;
-}
-
-.navigation-container .navigation-items .navigation-item span.selected {
-  border-bottom: 2px solid #5aa77e;
 }
 
 .navigation-container .navigation-bottom-bar {
