@@ -57,7 +57,8 @@ input[type=submit] {
 
 .content-wrapper {
   margin: 0 auto;
-  width: 700px;
+  margin-top: 100px;
+  width: 900px;
 }
 
 .navigation-button {
@@ -139,13 +140,14 @@ input[type=submit] {
   margin-right: 20px;
 }
 
-.navigation-container .navigation-item span.navigation-item-text {
+.navigation-container .navigation-item a.navigation-item-text {
   color: #ffffff;
   font-family: 'HelveticaNeue-Medium';
   font-size: 14px;
+  text-decoration: none;
 }
 
-.navigation-container .navigation-item span.selected {
+.navigation-container .navigation-item a.selected {
   color: #8FCCAB;
 }
 

@@ -5,14 +5,13 @@ block content
   p Welcome to #{title}
   if user
     div.welcomebox
-      // Filtered inline output
       p.
         Welcome, #{user.name}
   else
     div.loginbox
       form(name="login", action="/users/login", method="post")
-        input(type="text", name="user")
-        input(type="password", name="pass")
+        input(type="text", name="userName")
+        input(type="password", name="password")
         input(type="submit", value="login")
     div.register-button
       button(type="button", onclick="location.href='/register';").

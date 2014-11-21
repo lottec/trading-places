@@ -1,30 +1,38 @@
 var express = require('express');
 var router = express.Router();
-//var bcrypt = require('bcrypt');
 
 router.post('/register', function(req, res){
   res.redirect('/');
 });
 
-router.post('/login', function(req, res) {
-  var userName = req.body.user;
-  req.session.user = {name: userName};
-  res.redirect('/');
-});
+var loginPost = function(req, res) {
+  var userName = req.body.userName;
+  if (userName)
+    req.session.user = {name: userName};
 
-router.get('/isLoggedIn', function(req, res){
+  res.redirect('/');
+};
+
+router.post('/login', loginPost);
+
+var isLoggedInGet = function(req, res){
   if (req.session.user) {
     res.send(req.session.user);
   }  else {
     res.send();
   }
-});
+};
 
-//router.get('/logout', function(req, res) {
-//  if (req.session.user) {
-//    req.session.user = null;
-//  }
-//  res.send();
-//});
+router.get('/isLoggedIn', isLoggedInGet);
+
+var logoutGet = function(req, res) {
+  if (req.session.user) {
+    req.session.user = null;
+  }
+  res.redirect('/');
+};
+
+router.get('/logout', logoutGet);
 
 module.exports = router;
+module.testExports = {loginPost: loginPost, isLoggedInGet: isLoggedInGet, logoutGet: logoutGet};

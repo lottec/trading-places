@@ -15,5 +15,10 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "riakpbc": "*"
+  },
+  "devDependencies": {
+    "expect.js": "*",
+    "mocha": "*",
+    "require-from": "*"
   }
 }
