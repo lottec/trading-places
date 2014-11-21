@@ -6,19 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var RiakPBC = require('riakpbc');
 var riak = RiakPBC.createClient(/* options */);
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register');
 
 var app = express();
-//
-// var server = app.listen(3000, function () {
-//     var host = server.address().address
-//     var port = server.address().port
-//
-//     console.log('Example app listening at http://%s:%s', host, port)
-// });
+app.use(session({cookie: {maxAge: 30*60*1000}, secret: 'This is a secret', resave: true, saveUninitialized: true}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

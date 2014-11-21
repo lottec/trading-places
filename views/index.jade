@@ -7,7 +7,7 @@ block content
     div.welcomebox
       // Filtered inline output
       p.
-        Welcome, #{user}
+        Welcome, #{user.name}
   else
     div.loginbox
       form(name="login", action="/users/login", method="post")
