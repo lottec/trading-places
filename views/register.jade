@@ -3,17 +3,17 @@ extends layout
 block content
    div.register-form
       form(name="register", action="/users/register", method="post")
-        div
+        div Username:
           input(type="text", name="username")
-        div
+        div Password:
           input(type="password", name="password")
-        div
-          input(type="email", name="email")
-        div
+        div Email:
+          input(type="text", name="email")
+        div First name:
           input(type="text", name="firstName")
-        div
+        div Surname:
           input(type="text", name="surname")
-        div
+        div Number of team members:
           input(type="text", name="numberOfTeamMembers")
         div
           input(type="submit", value="register")

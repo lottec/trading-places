@@ -1,9 +1,9 @@
 var express = require('express');
+var bcrypt = require('bcrypt');
 var router = express.Router();
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net'
 var port = 8098;
-var bcrypt = require('bcrypt');
 
 var loginPost = function(req, res) {
   var username = req.body.username;
@@ -14,15 +14,17 @@ var loginPost = function(req, res) {
     request
     .get(host + ":" + port + "/riak/mt-register/" + username)
     .end(function(result){
-      var hash = result.body.password;
+      var hash = result.body.data.password;
+      var invalid = true;
+
       if (hash) {
         if (bcrypt.compareSync(password, hash)) {
+          invalid = false;
           req.session.user = {username: username};
         }
       }
-      res.redirect('/');
+      res.redirect('/?invalid=' + invalid);
     });
-
 
   } else {
     res.redirect('/');
@@ -52,14 +54,8 @@ var loginPost = function(req, res) {
 
 
   var registerPost = function(req, res) {
-    console.log('entered register post function');
     var username = req.body.username;
     var password = req.body.password;
-    var email = req.body.email;
-    var department = req.body.department;
-    var numberOfTeamMembers = req.body.numberOfTeamMembers;
-    var firstName = req.body.firstName;
-    var surname = req.body.surname;
 
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(password, salt);
@@ -67,13 +63,17 @@ var loginPost = function(req, res) {
     request.post(host + ":" + port + "/riak/mt-register/" + username)
     .set('Content-Type', 'application/json')
     .send({
-      "username": username,
-      "password": hash,
-      "email": email,
-      "first_name": firstName,
-      "surname": surname,
-      "num_team_members": numberOfTeamMembers,
-      "department": department
+      "event": "registration",
+      "timestamp": Date.now(),
+      "data": {
+        "username": username,
+        "password": hash,
+        "email": req.body.email,
+        "first_name": req.body.firstName,
+        "surname": req.body.surname,
+        "num_team_members": req.body.numberOfTeamMembers,
+        "department": req.body.department
+      }
     })
     .end(function() {
       res.redirect('/');

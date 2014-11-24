@@ -8,6 +8,10 @@ block content
       p.
         Welcome, #{user.username}
   else
+    if invalid
+      div.invalidbox
+      p.
+        Invalid username/password combination, please try again.
     div.loginbox
       form(name="login", action="/users/login", method="post")
         input(type="text", name="username")

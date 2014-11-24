@@ -5,7 +5,7 @@ var user = '';
 
 ///* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Trading Places', user: req.session.user});
+  res.render('index', { title: 'Trading Places', user: req.session.user,  invalid: req.param("invalid")});
 });
 
 module.exports = router;
