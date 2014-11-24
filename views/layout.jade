@@ -18,7 +18,7 @@ html
         a(class='navigation-item-text', href='/find') Find
       div(class='right-container')
         if user
-          span(class='logout-text') #{user.name}
+          span(class='logout-text') #{user.username}
             a(href='/users/logout') (Logout)
     div(class='content-wrapper')
       block content

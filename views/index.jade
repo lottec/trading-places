@@ -6,15 +6,13 @@ block content
   if user
     div.welcomebox
       p.
-        Welcome, #{user.name}
+        Welcome, #{user.username}
   else
     div.loginbox
       form(name="login", action="/users/login", method="post")
-        input(type="text", name="userName")
+        input(type="text", name="username")
         input(type="password", name="password")
         input(type="submit", value="login")
     div.register-button
       button(type="button", onclick="location.href='/register';").
         Register
-
-

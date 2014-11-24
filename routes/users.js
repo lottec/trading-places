@@ -3,14 +3,31 @@ var router = express.Router();
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net'
 var port = 8098;
+var bcrypt = require('bcrypt');
 
 var loginPost = function(req, res) {
-  var userName = req.body.userName;
-  if (userName)
-    req.session.user = {name: userName};
+  var username = req.body.username;
+  var password = req.body.password;
 
+  if (username && password) {
+
+    request
+    .get(host + ":" + port + "/riak/mt-register/" + username)
+    .end(function(result){
+      var hash = result.body.password;
+      if (hash) {
+        if (bcrypt.compareSync(password, hash)) {
+          req.session.user = {username: username};
+        }
+      }
+      res.redirect('/');
+    });
+
+
+  } else {
     res.redirect('/');
-  };
+  }
+};
 
   router.post('/login', loginPost);
 
@@ -44,12 +61,19 @@ var loginPost = function(req, res) {
     var firstName = req.body.firstName;
     var surname = req.body.surname;
 
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(password, salt);
+
     request.post(host + ":" + port + "/riak/mt-register/" + username)
     .set('Content-Type', 'application/json')
     .send({
       "username": username,
-      "password": password,
-      "email": email
+      "password": hash,
+      "email": email,
+      "first_name": firstName,
+      "surname": surname,
+      "num_team_members": numberOfTeamMembers,
+      "department": department
     })
     .end(function() {
       res.redirect('/');
