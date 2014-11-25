@@ -1,5 +1,6 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
+var validator = require('validator');
 var router = express.Router();
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net'
@@ -60,42 +61,73 @@ var loginPost = function(req, res) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(password, salt);
 
-    request
-    .get(host + ":" + port + "/riak/mt-register/" + username)
-    .end(function(result){
-      var invalid = false;
+    var invalid = false;
+    console.log("entered register post");
 
-      if (result.body.data.username) {
+    if (!validator.isLength(req.body.username, 3)) {
+      invalid = true;
+      console.log('failed form validation username');
 
-        
+    } else if (!validator.isLength(req.body.password, 3) || !validator.isLength(req.body.password_confirmation, 3)) {
+      invalid = true;
+      console.log('failed form validation password');
 
-      } else {
+    } else if (!validator.equals(req.body.password, req.body.password_confirmation)) {
+      invalid = true;
+      console.log('failed form validation password_confirmation');
 
-        request.post(host + ":" + port + "/riak/mt-register/" + username)
-        .set('Content-Type', 'application/json')
-        .send({
-          "event": "registration",
-          "timestamp": Date.now(),
-          "data": {
-            "username": username,
-            "password": hash,
-            "email": req.body.email,
-            "first_name": req.body.firstName,
-            "surname": req.body.surname,
-            "num_team_members": req.body.numberOfTeamMembers,
-            "department": req.body.department
-          }
-        })
-        .end(function() {
-          res.redirect('/');
-        });
+    } else if (!validator.isEmail(req.body.email)) {
+      invalid = true;
+      console.log('failed form validation email');
 
-      }
+    } else if (!validator.isLength(req.body.first_name, 1) || !validator.isLength(req.body.surname, 1)) {
+      invalid = true;
+      console.log('failed form validation first_name surname');
 
-    });
+    } else if (!validator.isLength(req.body.department, 1)) {
+      invalid = true;
+      console.log('failed form validation department');
 
+    } else if (!validator.isNumeric(req.body.num_team_members)) {
+      invalid = true;
+      console.log('failed form validation num_team_members');
 
+    }
 
+    if (invalid) {
+      console.log('failed form validation');
+      res.redirect('/register');
+    } else {
+      console.log('passed form validation');
+      request
+          .get(host + ":" + port + "/riak/mt-register/" + username)
+          .end(function(result){
+            if (result.body.data) {
+              console.log('username exists');
+              res.redirect('/register/?user_exists=true');
+            } else {
+              console.log('username does not exist, creating');
+              request.post(host + ":" + port + "/riak/mt-register/" + username)
+                  .set('Content-Type', 'application/json')
+                  .send({
+                    "event": "registration",
+                    "timestamp": Date.now(),
+                    "data": {
+                      "username": username,
+                      "password": hash,
+                      "email": req.body.email,
+                      "first_name": req.body.first_name,
+                      "surname": req.body.surname,
+                      "num_team_members": req.body.num_team_members,
+                      "department": req.body.department
+                    }
+                  })
+                  .end(function () {
+                    res.redirect('/');
+                  });
+            }
+          });
+    }
   };
 
   router.post('/register', registerPost);
