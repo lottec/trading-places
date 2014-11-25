@@ -60,24 +60,41 @@ var loginPost = function(req, res) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(password, salt);
 
-    request.post(host + ":" + port + "/riak/mt-register/" + username)
-    .set('Content-Type', 'application/json')
-    .send({
-      "event": "registration",
-      "timestamp": Date.now(),
-      "data": {
-        "username": username,
-        "password": hash,
-        "email": req.body.email,
-        "first_name": req.body.firstName,
-        "surname": req.body.surname,
-        "num_team_members": req.body.numberOfTeamMembers,
-        "department": req.body.department
+    request
+    .get(host + ":" + port + "/riak/mt-register/" + username)
+    .end(function(result){
+      var invalid = false;
+
+      if (result.body.data.username) {
+
+        
+
+      } else {
+
+        request.post(host + ":" + port + "/riak/mt-register/" + username)
+        .set('Content-Type', 'application/json')
+        .send({
+          "event": "registration",
+          "timestamp": Date.now(),
+          "data": {
+            "username": username,
+            "password": hash,
+            "email": req.body.email,
+            "first_name": req.body.firstName,
+            "surname": req.body.surname,
+            "num_team_members": req.body.numberOfTeamMembers,
+            "department": req.body.department
+          }
+        })
+        .end(function() {
+          res.redirect('/');
+        });
+
       }
-    })
-    .end(function() {
-      res.redirect('/');
+
     });
+
+
 
   };
 
