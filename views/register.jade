@@ -2,18 +2,30 @@
 extends layout
 block content
    div.register-form
-      form(name="register", action="/users/register", method="post")
+      form(name="register", id="register", action="/users/register", method="post")
         div Username:
-          input(type="text", name="username")
+          input(type="text", name="username", minlength="3", required)
         div Password:
-          input(type="password", name="password")
+          input(type="password", name="password", minlength="3", required)
+        div Password Confirmation:
+          input(type="password", name="password_confirmation", minlength="3", required)
         div Email:
-          input(type="text", name="email")
+          input(name="email", type="email", required)
         div First name:
-          input(type="text", name="firstName")
+          input(type="text", name="firstName", minlength="3", required)
         div Surname:
-          input(type="text", name="surname")
+          input(type="text", name="surname", minlength="3", required)
         div Number of team members:
-          input(type="text", name="numberOfTeamMembers")
+          input(type="number", name="numberOfTeamMembers", required)
         div
           input(type="submit", value="register")
+
+   script.
+     $("#register").validate({
+       rules: {
+         password: 'required',
+         password_confirmation: {
+           equalTo: '#password'
+         }
+       }
+     });
