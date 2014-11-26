@@ -16,6 +16,10 @@ var find = require('./routes/find');
 
 var app = express();
 app.use(session({cookie: {maxAge: 30*60*1000}, secret: 'This is a secret', resave: true, saveUninitialized: true}));
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
