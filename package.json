@@ -22,14 +22,11 @@
   "devDependencies": {
     "expect.js": "*",
     "mocha": "*",
+    "sinon": "*",
     "require-from": "*",
     "supertest": "*",
-    "mock-riak": "*"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "test"
-    }
+    "mock-riak": "*",
+    "istanbul": "*"
   }
 }
 
