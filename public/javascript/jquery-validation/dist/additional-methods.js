@@ -366,7 +366,7 @@ $.validator.addMethod("giroaccountNL", function(value, element) {
  * It has a country - specific format, that is checked here too
  */
 $.validator.addMethod("iban", function(value, element) {
-	// some quick simple tests to prevent needless work
+	// some quick simple test to prevent needless work
 	if (this.optional(element)) {
 		return true;
 	}

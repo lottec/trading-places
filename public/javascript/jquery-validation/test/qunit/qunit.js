@@ -92,7 +92,7 @@ var QUnit,
 // `QUnit` initialized at top of scope
 QUnit = {
 
-	// call on start of module test to prepend name to all tests
+	// call on start of module test to prepend name to all test
 	module: function( name, testEnvironment ) {
 		config.currentModule = name;
 		config.currentModuleTestEnvironment = testEnvironment;
@@ -222,18 +222,18 @@ QUnit = {
  * `config` initialized at top of scope
  */
 config = {
-	// The queue of tests to run
+	// The queue of test to run
 	queue: [],
 
 	// block until document ready
 	blocking: true,
 
-	// when enabled, show only failing tests
+	// when enabled, show only failing test
 	// gets persisted through sessionStorage and can be changed in UI via checkbox
 	hidepassed: false,
 
-	// by default, run previously failed tests first
-	// very useful in combination with "Hide passed tests" checked
+	// by default, run previously failed test first
+	// very useful in combination with "Hide passed test" checked
 	reorder: true,
 
 	// by default, modify document.title when suite is done
@@ -242,7 +242,7 @@ config = {
 	// by default, scroll to top of the page when suite is done
 	scrolltop: true,
 
-	// when enabled, all tests must call expect()
+	// when enabled, all test must call expect()
 	requireExpects: false,
 
 	// add checkboxes that are persisted in the query-string
@@ -256,7 +256,7 @@ config = {
 		{
 			id: "notrycatch",
 			label: "No try-catch",
-			tooltip: "Enabling this will run tests outside of a try-catch block. Makes debugging exceptions in IE reasonable. Stored as query-strings."
+			tooltip: "Enabling this will run test outside of a try-catch block. Makes debugging exceptions in IE reasonable. Stored as query-strings."
 		}
 	],
 
@@ -315,7 +315,7 @@ config = {
 		}
 	}
 
-	// Figure out if we're running the tests from a server or not
+	// Figure out if we're running the test from a server or not
 	QUnit.isLocal = location.protocol === "file:";
 }());
 
@@ -347,10 +347,10 @@ extend( QUnit, {
 				"<h2 id='qunit-banner'></h2>" +
 				"<div id='qunit-testrunner-toolbar'></div>" +
 				"<h2 id='qunit-userAgent'></h2>" +
-				"<ol id='qunit-tests'></ol>";
+				"<ol id='qunit-test'></ol>";
 		}
 
-		tests = id( "qunit-tests" );
+		tests = id( "qunit-test" );
 		banner = id( "qunit-banner" );
 		result = id( "qunit-testresult" );
 
@@ -375,9 +375,9 @@ extend( QUnit, {
 		}
 	},
 
-	// Resets the test setup. Useful for tests that modify the DOM.
+	// Resets the test setup. Useful for test that modify the DOM.
 	/*
-	DEPRECATED: Use multiple tests instead of resetting inside a test.
+	DEPRECATED: Use multiple test instead of resetting inside a test.
 	Use testStart or testDone for custom cleanup.
 	This method will throw an error in 2.0, and will be removed in 2.1
 	*/
@@ -688,7 +688,7 @@ QUnit.load = function() {
 
 		addEvent( filter, "click", function() {
 			var tmp,
-				ol = id( "qunit-tests" );
+				ol = id( "qunit-test" );
 
 			if ( filter.checked ) {
 				ol.className = ol.className + " hidepass";
@@ -698,17 +698,17 @@ QUnit.load = function() {
 			}
 			if ( defined.sessionStorage ) {
 				if (filter.checked) {
-					sessionStorage.setItem( "qunit-filter-passed-tests", "true" );
+					sessionStorage.setItem( "qunit-filter-passed-test", "true" );
 				} else {
-					sessionStorage.removeItem( "qunit-filter-passed-tests" );
+					sessionStorage.removeItem( "qunit-filter-passed-test" );
 				}
 			}
 		});
 
-		if ( config.hidepassed || defined.sessionStorage && sessionStorage.getItem( "qunit-filter-passed-tests" ) ) {
+		if ( config.hidepassed || defined.sessionStorage && sessionStorage.getItem( "qunit-filter-passed-test" ) ) {
 			filter.checked = true;
 			// `ol` initialized at top of scope
-			ol = id( "qunit-tests" );
+			ol = id( "qunit-test" );
 			ol.className = ol.className + " hidepass";
 		}
 		toolbar.appendChild( filter );
@@ -716,8 +716,8 @@ QUnit.load = function() {
 		// `label` initialized at top of scope
 		label = document.createElement( "label" );
 		label.setAttribute( "for", "qunit-filter-pass" );
-		label.setAttribute( "title", "Only show tests and assertions that fail. Stored in sessionStorage." );
-		label.innerHTML = "Hide passed tests";
+		label.setAttribute( "title", "Only show test and assertions that fail. Stored in sessionStorage." );
+		label.innerHTML = "Hide passed test";
 		toolbar.appendChild( label );
 
 		urlConfigContainer = document.createElement("span");
@@ -824,7 +824,7 @@ function done() {
 
 	var i, key,
 		banner = id( "qunit-banner" ),
-		tests = id( "qunit-tests" ),
+		tests = id( "qunit-test" ),
 		runtime = +new Date() - config.started,
 		passed = config.stats.all - config.stats.bad,
 		html = [
@@ -857,7 +857,7 @@ function done() {
 		].join( " " );
 	}
 
-	// clear own sessionStorage items if all tests passed
+	// clear own sessionStorage items if all test passed
 	if ( config.reorder && defined.sessionStorage && config.stats.bad === 0 ) {
 		// `key` & `i` initialized at top of scope
 		for ( i = 0; i < sessionStorage.length; i++ ) {
@@ -888,7 +888,7 @@ function validTest( test ) {
 		module = config.module && config.module.toLowerCase(),
 		fullName = ( test.module + ": " + test.testName ).toLowerCase();
 
-	// Internally-generated tests are always valid
+	// Internally-generated test are always valid
 	if ( test.callback && test.callback.validTest === validTest ) {
 		delete test.callback.validTest;
 		return true;
@@ -1195,7 +1195,7 @@ Test.count = 0;
 Test.prototype = {
 	init: function() {
 		var a, b, li,
-			tests = id( "qunit-tests" );
+			tests = id( "qunit-test" );
 
 		if ( tests ) {
 			b = document.createElement( "strong" );
@@ -1309,7 +1309,7 @@ Test.prototype = {
 			// else next test will carry the responsibility
 			saveGlobal();
 
-			// Restart the tests if they're blocking
+			// Restart the test if they're blocking
 			if ( config.blocking ) {
 				QUnit.start();
 			}
@@ -1346,7 +1346,7 @@ Test.prototype = {
 			test = this,
 			good = 0,
 			bad = 0,
-			tests = id( "qunit-tests" );
+			tests = id( "qunit-test" );
 
 		this.runtime = +new Date() - this.started;
 		config.stats.all += this.assertions.length;

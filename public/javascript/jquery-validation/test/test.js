@@ -339,7 +339,7 @@ test( "submitHandler keeps submitting button", function() {
 	$( "#userForm" ).validate({
 		debug: true,
 		submitHandler: function( form ) {
-			// dunno how to test this better; this tests the implementation that uses a hidden input
+			// dunno how to test this better; this test the implementation that uses a hidden input
 			var hidden = $( form ).find( "input:hidden" )[ 0 ];
 			deepEqual( hidden.value, button.value );
 			deepEqual( hidden.name, button.name );

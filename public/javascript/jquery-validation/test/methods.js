@@ -708,7 +708,7 @@ test("iban", function() {
 });
 
 /**
- * BIC tests (For BIC definition take a look on the implementation itself)
+ * BIC test (For BIC definition take a look on the implementation itself)
  */
 test("bic", function() {
 	var method = methodTest( "bic" );
