@@ -3,15 +3,6 @@ var expect = require('expect.js');
 var sinon = require('sinon');
 var users = requireFrom('testExports', module, '../routes/users.js');
 
-
-//var getSpy = sinon.spy(users.request, "get");
-
-//users.request = { get: function() { return {end: function() {}} } };
-//var requestMock = sinon.mock(users.request);
-//var requestGetMock = sinon.mock(users.request.get);
-
-
-
 describe('Register page', function() {
     it('should not register without credentials', function(done) {
         var req = {body: {  } };

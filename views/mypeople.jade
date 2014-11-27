@@ -2,7 +2,7 @@ extends layout
 block content
     if session.user
         div.add-form
-            form(name="add", id="add", action="/users/add_team_member", method="post")
+            form(name="add", id="add", action="/mypeople/add_team_member", method="post")
                 div First name:
                     input(type="text", name="first_name", id="first_name", required)
                 div Surname:
@@ -10,10 +10,13 @@ block content
                 div Job title:
                     input(type="text", name="job_title", id="job_title", required)
                 div Skills
-                    div
-                        input(type="text", name="skill", id="skill", placeholder="Enter skill...", required)
-                        input(type="submit", name="add_skill_button", id="add_skill_button", value="Add")
-                div Availability toggle:
-                    input(type="checkbox", name="availability", id="availability", required)
+                    div Expert
+                        input(type="text", name="expert", id="expert", placeholder="Enter skill...")
+                    div Intermediate
+                        input(type="text", name="intermediate", id="intermediate", placeholder="Enter skill...")
+                    div Basic
+                        input(type="text", name="basic", id="basic", placeholder="Enter skill...")
+                div Available now?
+                    input(type="checkbox", name="availability", id="availability")
                 div
-                    input(type="submit", value="register")
+                    input(type="submit", value="Done")

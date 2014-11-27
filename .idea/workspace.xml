@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f66fff-5518-4188-b163-f85714c1fc21" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/mypeople.jade" afterPath="$PROJECT_DIR$/views/mypeople.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/mypeople.js" afterPath="$PROJECT_DIR$/routes/mypeople.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/registerTest.js" afterPath="$PROJECT_DIR$/test/registerTest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="miniontrader.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +32,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1830">
-              <caret line="115" column="19" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
+            <state vertical-scroll-proportion="-2.8846154" vertical-offset="0" max-vertical-offset="1830">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -49,21 +49,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mypeople.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mypeople.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/mypeople.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-              <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+            <state vertical-scroll-proportion="-0.46833014" vertical-offset="304" max-vertical-offset="1020">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mypeople.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mypeople.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/mypeople.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48289737" vertical-offset="0" max-vertical-offset="497">
-              <caret line="16" column="92" selection-start-line="16" selection-start-column="92" selection-end-line="16" selection-end-column="92" />
+            <state vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="405">
+              <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registerTest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/registerTest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,8 +82,8 @@
       <file leaf-file-name="register.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/register.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4" vertical-offset="0" max-vertical-offset="630">
-              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            <state vertical-scroll-proportion="-1.2" vertical-offset="0" max-vertical-offset="630">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -104,16 +114,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
               <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="420">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -196,52 +196,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miniontrader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -251,7 +205,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../minionalytics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sea-dashboard" />
     <property name="options.lastSelected" value="preferences.editor" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -323,11 +277,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981315" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22644164" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22566995" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2488917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22419253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15389487" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -654,14 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1945" max-vertical-offset="2910">
-          <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06036217" vertical-offset="0" max-vertical-offset="497">
@@ -710,18 +656,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
+    <entry file="file://$PROJECT_DIR$/views/register.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1321" max-vertical-offset="1830">
-          <caret line="115" column="19" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
+        <state vertical-scroll-proportion="-1.2" vertical-offset="0" max-vertical-offset="630">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/test/registerTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4760077" vertical-offset="900" max-vertical-offset="2910">
+          <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -734,26 +688,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.jade">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4" vertical-offset="0" max-vertical-offset="630">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="7" column="71" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/mypeople.js">
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        <state vertical-scroll-proportion="-2.8846154" vertical-offset="0" max-vertical-offset="1830">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/mypeople.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48289737" vertical-offset="0" max-vertical-offset="497">
-          <caret line="16" column="92" selection-start-line="16" selection-start-column="92" selection-end-line="16" selection-end-column="92" />
+        <state vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="405">
+          <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/mypeople.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.46833014" vertical-offset="304" max-vertical-offset="1020">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding />
         </state>
       </provider>
