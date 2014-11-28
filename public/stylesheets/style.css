@@ -306,3 +306,88 @@ input[type=submit] {
   width: 100%;
   cursor: pointer;
 }
+
+
+
+.add-person-container {
+  background: #e8e8e8;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 250px;
+  padding: 0;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.add-person-container p.header {
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 13px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.add-person-container #errors {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 10px;
+}
+
+.add-person-container input[type=text],input[type=password],input[type=email],input[type=number] {
+  width: 190px;
+  height: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #898989;
+  box-shadow: 0 0 2px #989898;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.add-person-container .fields-container {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.add-person-container .button-container {
+  background: #686866;
+  text-align: center;
+  padding: 5px;
+  margin-top: 8px;
+}
+
+.add-person-container .button-container input[type=submit] {
+  background: transparent;
+  color: #f5c85a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  cursor: pointer;
+}
+
+
+
+.team-members-container {
+  background: #e8e8e8;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: inline-block;
+  padding: 0;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.team-members-container .column {
+  display: inline-block;
+  padding: 10px 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.team-members-container .column-header {
+  background: #323232;
+  color: #ffffff;
+}

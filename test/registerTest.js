@@ -44,7 +44,7 @@ describe('Register page', function() {
                 username: "TestMocha",
                 password: "whatever",
                 first_name: "test",
-                surname: "test",
+                surname: "test"
             }
         };
         var res = {

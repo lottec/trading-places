@@ -1,22 +1,58 @@
 extends layout
 block content
-    if session.user
-        div.add-form
+    if !session.user
+        div.add-person-container
+            p.header Add Team Member
             form(name="add", id="add", action="/mypeople/add_team_member", method="post")
-                div First name:
-                    input(type="text", name="first_name", id="first_name", required)
-                div Surname:
-                    input(type="text", id="surname", name="surname", required)
-                div Job title:
-                    input(type="text", name="job_title", id="job_title", required)
-                div Skills
-                    div Expert
-                        input(type="text", name="expert", id="expert", placeholder="Enter skill...")
-                    div Intermediate
-                        input(type="text", name="intermediate", id="intermediate", placeholder="Enter skill...")
-                    div Basic
-                        input(type="text", name="basic", id="basic", placeholder="Enter skill...")
-                div Available now?
-                    input(type="checkbox", name="availability", id="availability")
-                div
-                    input(type="submit", value="Done")
+                div.fields-container
+                    div
+                        input(type="text", name="first_name", id="first_name", placeholder="First name", required)
+                    div
+                        input(type="text", id="surname", name="surname", placeholder="Surname", required)
+                    div
+                        input(type="text", name="job_title", id="job_title", placeholder="Job title", required)
+                    div
+                        input(type="text", name="expert", id="expert", placeholder="Expert skills...")
+                    div
+                        input(type="text", name="intermediate", id="intermediate", placeholder="Intermediate skills...")
+                    div
+                        input(type="text", name="basic", id="basic", placeholder="Basic skills...")
+                    div Available now?
+                        input(type="checkbox", name="availability", id="availability")
+                div.button-container
+                    div
+                        input(type="submit", value="Add Team Member")
+        div.team-members-container
+            div(class="column column-header")
+                span ID
+            div(class="column column-header")
+                span Name
+            div(class="column column-header")
+                span Skills &amp; Ability Levels
+            div(class="column column-header")
+                span Job Description
+            div(class="column column-header")
+                span Availability
+            div(class="column column-header")
+                span Availability Date
+            div(class="column column-header")
+                span Action
+            each member in team_members
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+                div(class="column")
+                    #{member.data.first_name}
+    else
+        div.error-message-box
+            p.
+                You must be logged in to use this page.
