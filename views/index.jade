@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
   if user
     div.welcomebox
       p.
         Welcome, #{user.username}
   else
     if invalid
-      div.invalidbox
+      div.error-container
       p.
         Invalid username/password combination, please try again.
-    div.loginbox
+    div.login-container
+      p.header Sign in
       form(name="login", action="/users/login", method="post")
-        input(type="text", name="username")
-        input(type="password", name="password")
-        input(type="submit", value="login")
-    div.register-button
-      button(type="button", onclick="location.href='/register';").
-        Register
+        div.fields-container
+          input(type="text", name="username", placeholder="Username")
+          input(type="password", name="password", placeholder="Password")
+        div.button-container
+          input(type="submit", value="Continue")
+    div.new-user-container
+      p New user?&nbsp;
+        a(href='/register') Sign-up

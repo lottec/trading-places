@@ -4,7 +4,8 @@ html,body {
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Verdana, "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 /* Fonts */
@@ -52,58 +53,37 @@ input[type=submit] {
   border-radius: 3px;
   background: #5aa77e;
   color: #ffffff;
-  font-weight: bold;
 }
 
 .content-wrapper {
   margin: 0 auto;
-  margin-top: 100px;
   width: 900px;
 }
 
-.navigation-button {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 35px;
-  height: 35px;
-  border-radius: 3px;
-  cursor: pointer;
-  z-index: 999;
-  background: #151515;
-  text-align: center;
-}
-
-.navigation-button span {
-  line-height: 35px;
-  color: #ffffff;
-  font-size: 20px;
-}
 
 .navigation-container {
   top: 0;
   left: 0;
   min-width: 100%;
-  min-height: 50px;
-  position: fixed;
-  background: #181818;
-  color: #ffffff;
+  min-height: 90px;
+  background: white;
+  color: #000000;
   z-index: 1000;
+  padding: 10px;
 }
 
-.navigation-container div.header-text {
-  padding: 5px;
+.navigation-container .header-logo {
   text-align: center;
   display: inline-block;
-  margin-right: 100px;
+  height: 90px;
+  line-height:90px;
+  vertical-align: top;
+  margin-right: 80px;
   margin-left: 20px;
 }
 
-.navigation-container .header-text h1 {
-  font-family: 'CodeProRegular';
-  font-size: 18px;
-  color: #ffffff;
-  text-transform: uppercase;
+.navigation-container .header-logo img {
+  margin-top: 23px;
 }
 
 .navigation-container .navigation-items {
@@ -116,6 +96,9 @@ input[type=submit] {
   text-align: center;
   display: inline-block;
   margin-right: 50px;
+  height: 90px;
+  line-height:90px;
+  vertical-align: top;
 }
 
 .navigation-container .navigation-item:hover {
@@ -133,7 +116,7 @@ input[type=submit] {
 }
 
 .navigation-container .right-container span.logout-text {
-  color: #ffffff;
+  color: #000000;
   font-family: 'HelveticaNeue-Medium';
   font-size: 14px;
   line-height: 50px;
@@ -141,7 +124,7 @@ input[type=submit] {
 }
 
 .navigation-container .navigation-item a.navigation-item-text {
-  color: #ffffff;
+  color: #000000;
   font-family: 'HelveticaNeue-Medium';
   font-size: 14px;
   text-decoration: none;
@@ -185,4 +168,141 @@ input[type=submit] {
   font-size: 13px;
   font-family: 'HelveticaNeue-Bold', sans-serif;
   line-height: 40px;
+}
+
+
+.login-container {
+  background: #e8e8e8;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 250px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login-container p.header {
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 13px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.login-container input[type=text],input[type=password] {
+  width: 190px;
+  height: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #898989;
+  box-shadow: 0 0 2px #989898;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.login-container .fields-container {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.login-container .button-container {
+  background: #686866;
+  text-align: center;
+  padding: 5px;
+  margin-top: 8px;
+}
+
+.login-container .button-container input[type=submit] {
+  background: transparent;
+  color: #f5c85a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.new-user-container {
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.new-user-container p {
+  margin: 0;
+  color: #676767;
+}
+
+.new-user-container p a {
+  text-decoration: underline;
+  color: #323232;
+}
+
+.error-container {
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+
+.register-container {
+  background: #e8e8e8;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 250px;
+  padding: 0;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.register-container p.header {
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 13px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.register-container #errors {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 10px;
+}
+
+.register-container input[type=text],input[type=password],input[type=email],input[type=number] {
+  width: 190px;
+  height: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #898989;
+  box-shadow: 0 0 2px #989898;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.register-container .fields-container {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.register-container .button-container {
+  background: #686866;
+  text-align: center;
+  padding: 5px;
+  margin-top: 8px;
+}
+
+.register-container .button-container input[type=submit] {
+  background: transparent;
+  color: #f5c85a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  cursor: pointer;
 }

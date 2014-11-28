@@ -5,24 +5,27 @@ block content
     div
       p.
         Errr no
-  div.register-form
-      form(name="register", id="register", action="/users/register", method="post")
-        div Username:
-          input(type="text", name="username", id="username", minlength="3", required)
-        div Password:
-          input(type="password", id="password", name="password", minlength="3", required)
-        div Password Confirmation:
-          input(type="password", id="password_confirmation", name="password_confirmation", minlength="3", required)
-        div Email:
-          input(name="email", type="email", required)
-        div First name:
-          input(type="text", name="first_name", id="first_name", required)
-        div Surname:
-          input(type="text", name="surname", id="surname", required)
-        div Number of team members:
-          input(type="number", name="num_team_members", id="num_team_members", required)
-        div Department:
-          input(type="text", name="department", id="department", required)
+  div.register-container
+    p.header Sign up
+    form(name="register", id="register", action="/users/register", method="post")
+      div.fields-container
+        div
+          input(type="text", name="username", id="username", minlength="3", placeholder="Username", required)
+        div
+          input(type="password", id="password", name="password", minlength="3", placeholder="Password", required)
+        div
+          input(type="password", id="password_confirmation", name="password_confirmation", minlength="3", placeholder="Confirm password", required)
+        div
+          input(name="email", type="email", placeholder="Email Address", required)
+        div
+          input(type="text", name="first_name", id="first_name", placeholder="First name", required)
+        div
+          input(type="text", name="surname", id="surname", placeholder="Surname", required)
+        div
+          input(type="number", name="num_team_members", id="num_team_members", placeholder="Number of team members", required)
+        div
+          input(type="text", name="department", id="department", placeholder="Department", required)
+      div.button-container
         div
           input(type="submit", value="register")
 
@@ -33,5 +36,19 @@ block content
          password_confirmation: {
            equalTo: '#password'
          }
+       },
+       errorElement: "div",
+       errorPlacement: function(error, element) {
+         error.insertBefore(element);
+       },
+       messages: {
+         username: "Please enter a username",
+         password: "Please enter a password",
+         password_confirmation: "Please confirm your password",
+         email: "Please enter a valid email address",
+         first_name: "Please enter your first name",
+         surname: "Please enter your surname",
+         num_team_members: "Please enter the number members in your team",
+         department: "Please enter your department"
        }
      });
