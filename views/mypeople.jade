@@ -26,8 +26,6 @@ block content
             table
                 tr
                     td
-                        span ID
-                    td
                         span Name
                     td
                         span Skills &amp; Ability Levels
@@ -36,26 +34,33 @@ block content
                     td
                         span Availability
                     td
-                        span Availability Date
-                    td
                         span Action
 
                 each member in team_members
                     tr
-                        td
-                            span -
-                        td
+                        td(valign="top")
                             span #{member.data.surname}, #{member.data.first_name}
-                        td
-                            span -
-                        td
+                        td.skills(valign="top")
+                            span.skill-header Expert
+                            br
+                            span.
+                                #{member.data.expert}
+                            br
+                            span.skill-header Intermediate
+                            br
+                            span.
+                                #{member.data.intermediate}
+                            br
+                            span.skill-header Basic
+                            br
+                            span.
+                                #{member.data.basic}
+                        td(valign="top")
                             span #{member.data.job_title}
-                        td
+                        td(valign="top")
                             span #{member.data.availability}
-                        td
-                            span #{member.data.first_name}
-                        td
-                            span Something
+                        td(valign="top")
+                            input(type="button",value="Manage")
 
     else
         div.error-message-box

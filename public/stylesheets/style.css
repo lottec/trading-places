@@ -396,3 +396,16 @@ input[type=submit] {
   padding: 6px 15px;
   text-align: center;
 }
+
+.team-members-container .skills {
+  text-align: left;
+  vertical-align: top;
+  margin: 0;
+}
+
+.team-members-container .skill-header {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: #434343;
+}

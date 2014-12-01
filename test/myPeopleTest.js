@@ -122,7 +122,7 @@ describe('Add team member page', function() {
 
 
         var requestStub1 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockResult); }} });
-        
+
         var requestStub2 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[0]]); }} });
         var requestStub3 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[1]]); }} });
 
