@@ -6,9 +6,11 @@ var port = 8098;
 var validator = require('validator');
 
 router.get('/', function(req,res) {
+    getTeamMembers(req, function(teamMembers) {
+        res.render('mypeople', { title: 'My People', team_members: teamMembers});
+    });
 
     //res.render('mypeople', { title: 'My People'});
-    res.render('mypeople', { title: 'My People', team_members: mockTeamMembers()});
     //request.get('/mypeople/get_team_members')
     //    .end(function(error, result) {
     //        console.log(error);
@@ -57,75 +59,106 @@ var addPost = function(req, res) {
 };
 
 router.post('/add_team_member', addPost);
+//
+//var getTeamMembers = function() {
+//    getTeamMembersReq(req, res);
+//}
+
+var getTeamMembers = function(req, callback) {
 
 
-var getTeamMembers = function(req, res) {
-    res.send(
-        mockTeamMembers()
-    );
+    var teamMembers = [];
+    var i = 1;
+
+    request
+        .get(host + ":" + port + "/buckets/mt-add-team-member/keys?keys=true")
+        .end(function(error, result){
+            var keys = JSON.parse(result.text).keys;
+
+            keys.forEach(function(key) {
+                request
+                    .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
+                    .end(function(error, result){
+
+
+                        try {
+                            var json = JSON.parse(result.text);
+                            if (json.data.manager == req.session.user.username) {
+                                teamMembers.push(json);
+                            }
+                        } catch (e) {
+
+                        }
+
+                        if (i == keys.length) {
+                            callback(teamMembers);
+                        }
+                        i++;
+                    });
+
+            });
+        });
+    //
+    //return [{
+    //    "event": "add_team_member",
+    //    "timestamp": "",
+    //    "data": {
+    //        "first_name": "Carl",
+    //        "surname": "Minion",
+    //        "job_title": "Dev",
+    //        "expert": "Java",
+    //        "intermediate": "",
+    //        "basic": "",
+    //        "availability": true,
+    //        "manager": "Gru"
+    //    }
+    //},
+    //    {
+    //        "event": "add_team_member",
+    //        "timestamp": "",
+    //        "data": {
+    //            "first_name": "Lotte",
+    //            "surname": "Minion",
+    //            "job_title": "Dev",
+    //            "expert": "Objective-C",
+    //            "intermediate": "Node",
+    //            "basic": "",
+    //            "availability": false,
+    //            "manager": "Gru"
+    //        }
+    //    },
+    //    {
+    //        "event": "add_team_member",
+    //        "timestamp": "",
+    //        "data": {
+    //            "first_name": "Andrew",
+    //            "surname": "Minion",
+    //            "job_title": "Dev",
+    //            "expert": "Everything",
+    //            "intermediate": "",
+    //            "basic": "",
+    //            "availability": true,
+    //            "manager": "Gru"
+    //        }
+    //    },
+    //    {
+    //        "event": "add_team_member",
+    //        "timestamp": "",
+    //        "data": {
+    //            "first_name": "Test",
+    //            "surname": "Minion",
+    //            "job_title": "Dev",
+    //            "expert": "Something",
+    //            "intermediate": "",
+    //            "basic": "Else",
+    //            "availability": true,
+    //            "manager": "Gru"
+    //        }
+    //    }]
 };
-
-var mockTeamMembers = function() {
-    return [{
-        "event": "add_team_member",
-        "timestamp": "",
-        "data": {
-            "first_name": "Carl",
-            "surname": "Minion",
-            "job_title": "Dev",
-            "expert": "Java",
-            "intermediate": "",
-            "basic": "",
-            "availability": true,
-            "manager": "Gru"
-        }
-    },
-        {
-            "event": "add_team_member",
-            "timestamp": "",
-            "data": {
-                "first_name": "Lotte",
-                "surname": "Minion",
-                "job_title": "Dev",
-                "expert": "Objective-C",
-                "intermediate": "Node",
-                "basic": "",
-                "availability": false,
-                "manager": "Gru"
-            }
-        },
-        {
-            "event": "add_team_member",
-            "timestamp": "",
-            "data": {
-                "first_name": "Andrew",
-                "surname": "Minion",
-                "job_title": "Dev",
-                "expert": "Everything",
-                "intermediate": "",
-                "basic": "",
-                "availability": true,
-                "manager": "Gru"
-            }
-        },
-        {
-            "event": "add_team_member",
-            "timestamp": "",
-            "data": {
-                "first_name": "Test",
-                "surname": "Minion",
-                "job_title": "Dev",
-                "expert": "Something",
-                "intermediate": "",
-                "basic": "Else",
-                "availability": true,
-                "manager": "Gru"
-            }
-        }]
-}
 
 
 router.get('/get_team_members', getTeamMembers);
 
 module.exports = router;
-module.testExports = {addPost: addPost, request: request, host: host, port: port};
+module.testExports = {addPost: addPost, getTeamMembers: getTeamMembers, request: request, host: host, port: port};

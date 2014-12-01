@@ -101,7 +101,6 @@ describe('Register page', function() {
         };
 
         var requestStub = sinon.stub(users.request, "get", function() { return {end: function(callback) { callback({body: { data: { } }}); }} });
-
         var res = {
             redirect: function(path) {
                 expect(path).to.be('/register/?user_exists=true');

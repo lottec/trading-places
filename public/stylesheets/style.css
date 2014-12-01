@@ -391,3 +391,8 @@ input[type=submit] {
   background: #323232;
   color: #ffffff;
 }
+
+.team-members-container table tr td {
+  padding: 6px 15px;
+  text-align: center;
+}

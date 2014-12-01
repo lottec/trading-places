@@ -5,6 +5,7 @@ var expect = require('expect.js');
 var router = express.Router();
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net';
+var sinon = require('sinon');
 var port = 8098;
 var requireFrom = require('require-from');
 var mypeople = requireFrom('testExports', module, '../routes/mypeople.js');
@@ -80,4 +81,58 @@ describe('Add team member page', function() {
 
     });
 
-});
+    it('should retrieve team members for logged in manager', function(done) {
+
+        var req = {
+            session: { user: { username: "Test" } }
+        };
+
+        var mockData = [{
+            "event": "add_team_member",
+            "timestamp": "",
+            "data": {
+                "first_name": "Test",
+                "surname": "Minion",
+                "job_title": "Dev",
+                "expert": "Something",
+                "intermediate": "",
+                "basic": "Else",
+                "availability": true,
+                "manager": "Gru"
+            }
+        },
+            {
+                "event": "add_team_member",
+                "timestamp": "",
+                "data": {
+                    "first_name": "Test",
+                    "surname": "Minion",
+                    "job_title": "Dev",
+                    "expert": "Something",
+                    "intermediate": "",
+                    "basic": "Else",
+                    "availability": true,
+                    "manager": "Test"
+                }
+            }]
+
+        var mockResult = '{\
+            "keys": [0,1]\
+        }';
+
+
+        var requestStub1 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockResult); }} });
+        
+        var requestStub2 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[0]]); }} });
+        var requestStub3 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[1]]); }} });
+
+        mypeople.getTeamMembers(req, function(teamMembers) {
+            console.log(teamMembers);
+            requestStub1.restore();
+            requestStub2.restore();
+            requestStub3.restore();
+            done();
+        });
+    });
+
+    });
