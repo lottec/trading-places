@@ -87,50 +87,47 @@ describe('Add team member page', function() {
             session: { user: { username: "Test" } }
         };
 
-        var mockData = [{
-            "event": "add_team_member",
-            "timestamp": "",
-            "data": {
-                "first_name": "Test",
-                "surname": "Minion",
-                "job_title": "Dev",
-                "expert": "Something",
-                "intermediate": "",
-                "basic": "Else",
-                "availability": true,
-                "manager": "Gru"
-            }
+        var mockData = [{"text": '{\
+            "event": "add_team_member",\
+            "timestamp": "",\
+            "data": {\
+                "first_name": "Test",\
+                "surname": "Minion",\
+                "job_title": "Dev",\
+                "expert": "Something",\
+                "intermediate": "",\
+                "basic": "Else",\
+                "availability": true,\
+                "manager": "Gru"\
+            } }'
         },
-            {
-                "event": "add_team_member",
-                "timestamp": "",
-                "data": {
-                    "first_name": "Test",
-                    "surname": "Minion",
-                    "job_title": "Dev",
-                    "expert": "Something",
-                    "intermediate": "",
-                    "basic": "Else",
-                    "availability": true,
-                    "manager": "Test"
-                }
-            }]
+            {"text": '{\
+                "event": "add_team_member",\
+                "timestamp": "",\
+                "data": {\
+                    "first_name": "Test",\
+                    "surname": "Minion",\
+                    "job_title": "Dev",\
+                    "expert": "Something",\
+                    "intermediate": "",\
+                    "basic": "Else",\
+                    "availability": true,\
+                    "manager": "Test"\
+                } }'
+            }];
 
-        var mockResult = '{\
-            "keys": [0,1]\
-        }';
+        var mockResult = {text: '{"keys": [0,1]}'};
 
+        var requestStub = sinon.stub(mypeople.request, "get");
 
-        var requestStub1 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockResult); }} });
-
-        var requestStub2 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[0]]); }} });
-        var requestStub3 = sinon.stub(mypeople.request, "get", function() { return {end: function(callback) { callback(null, mockData[mockResult.keys[1]]); }} });
+        requestStub.onCall(0).returns({end: function(callback) { callback(null, mockResult); }});
+        requestStub.onCall(1).returns({end: function(callback) { callback(null, mockData[0]); }});
+        requestStub.onCall(2).returns({end: function(callback) { callback(null, mockData[1]); }});
 
         mypeople.getTeamMembers(req, function(teamMembers) {
             console.log(teamMembers);
-            requestStub1.restore();
-            requestStub2.restore();
-            requestStub3.restore();
+            expect(teamMembers.length).to.be(1);
+            requestStub.restore();
             done();
         });
     });

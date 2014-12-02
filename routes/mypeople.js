@@ -34,7 +34,7 @@ var addPost = function(req, res) {
         if (invalid) {
             res.redirect('/mypeople?invalid=true');
         } else {
-            request.post(host + ":" + port + "/riak/mt-add-team-member")
+            request.post(host + ":" + port + "/riak/mt-add-team-member/")
                 .set('Content-Type', 'application/json')
                 //.set('x-riak-index-manager_bin', 'testing')
                 .send({
@@ -48,6 +48,11 @@ var addPost = function(req, res) {
                         "intermediate": req.body.intermediate,
                         "basic": req.body.basic,
                         "availability": req.body.availability,
+                        "availability_duration": {
+                            "equality": req.body.equality,
+                            "number": req.body.num,
+                            "unit": req.body.unit
+                        },
                         "manager": req.session.user.username
                     }
                 })
@@ -59,13 +64,8 @@ var addPost = function(req, res) {
 };
 
 router.post('/add_team_member', addPost);
-//
-//var getTeamMembers = function() {
-//    getTeamMembersReq(req, res);
-//}
 
 var getTeamMembers = function(req, callback) {
-
 
     var teamMembers = [];
     var i = 1;
@@ -79,7 +79,6 @@ var getTeamMembers = function(req, callback) {
                 request
                     .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
                     .end(function(error, result){
-
 
                         try {
                             var json = JSON.parse(result.text);
@@ -98,63 +97,6 @@ var getTeamMembers = function(req, callback) {
 
             });
         });
-    //
-    //return [{
-    //    "event": "add_team_member",
-    //    "timestamp": "",
-    //    "data": {
-    //        "first_name": "Carl",
-    //        "surname": "Minion",
-    //        "job_title": "Dev",
-    //        "expert": "Java",
-    //        "intermediate": "",
-    //        "basic": "",
-    //        "availability": true,
-    //        "manager": "Gru"
-    //    }
-    //},
-    //    {
-    //        "event": "add_team_member",
-    //        "timestamp": "",
-    //        "data": {
-    //            "first_name": "Lotte",
-    //            "surname": "Minion",
-    //            "job_title": "Dev",
-    //            "expert": "Objective-C",
-    //            "intermediate": "Node",
-    //            "basic": "",
-    //            "availability": false,
-    //            "manager": "Gru"
-    //        }
-    //    },
-    //    {
-    //        "event": "add_team_member",
-    //        "timestamp": "",
-    //        "data": {
-    //            "first_name": "Andrew",
-    //            "surname": "Minion",
-    //            "job_title": "Dev",
-    //            "expert": "Everything",
-    //            "intermediate": "",
-    //            "basic": "",
-    //            "availability": true,
-    //            "manager": "Gru"
-    //        }
-    //    },
-    //    {
-    //        "event": "add_team_member",
-    //        "timestamp": "",
-    //        "data": {
-    //            "first_name": "Test",
-    //            "surname": "Minion",
-    //            "job_title": "Dev",
-    //            "expert": "Something",
-    //            "intermediate": "",
-    //            "basic": "Else",
-    //            "availability": true,
-    //            "manager": "Gru"
-    //        }
-    //    }]
 };
 
 
