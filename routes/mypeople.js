@@ -9,13 +9,7 @@ router.get('/', function(req,res) {
     getTeamMembers(req, function(teamMembers) {
         res.render('mypeople', { title: 'My People', team_members: teamMembers});
     });
-
-    //res.render('mypeople', { title: 'My People'});
-    //request.get('/mypeople/get_team_members')
-    //    .end(function(error, result) {
-    //        console.log(error);
-    //
-    //    });
+    
 });
 
 var addPost = function(req, res) {

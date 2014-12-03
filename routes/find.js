@@ -1,8 +1,49 @@
 var express = require('express');
 var router = express.Router();
+var request = require('superagent');
+var host = 'http://db.cistechfutures.net';
+var port = 8098;
 
 router.get('/', function(req,res) {
-    res.render('find', { title: 'Find' });
+    //res.render('find', { title: 'Find' });
+    getAllTeamMembers(req, function(teamMembers) {
+        res.render('find', { title: 'Find', team_members: teamMembers});
+        //res.send(teamMembers);
+    });
 });
+
+var getAllTeamMembers = function(req, callback) {
+
+    var teamMembers = [];
+    var i = 1;
+
+    request
+        .get(host + ":" + port + "/buckets/mt-add-team-member/keys?keys=true")
+        .end(function(error, result){
+            var keys = JSON.parse(result.text).keys;
+
+            keys.forEach(function(key) {
+                request
+                    .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
+                    .end(function(error, result){
+
+                        try {
+                            var json = JSON.parse(result.text);
+                            if (json.data.availability == "on") {
+                                teamMembers.push(json);
+                            }
+                        } catch (e) {
+
+                        }
+
+                        if (i == keys.length) {
+                            callback(teamMembers);
+                        }
+                        i++;
+                    });
+
+            });
+        });
+};
 
 module.exports = router;

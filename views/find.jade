@@ -1,3 +1,38 @@
 extends layout
-
 block content
+    if session.user
+        div.find-members-container
+            table
+                tr
+                    td
+                        span Skills &amp; Ability Levels
+                    td
+                        span Job Description
+                    //td
+                    //    span Availability
+        each member in team_members
+            tr
+                td.skills(valign="top")
+                    br
+                    span.skill-header Expert
+                    br
+                    span.
+                        #{member.data.expert}
+                    br
+                    span.skill-header Intermediate
+                    br
+                    span.
+                        #{member.data.intermediate}
+                    br
+                    span.skill-header Basic
+                    br
+                    span.
+                        #{member.data.basic}
+                td(valign="top")
+                    span #{member.data.job_title}
+                //td(valign="top")
+                //    span #{member.data.availability_duration.equality} #{member.data.availability_duration.num} #{member.data.availability_duration.unit}
+    else
+        div.error-message-box
+            p.
+                You must be logged in to use this page.
