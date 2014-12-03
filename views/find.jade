@@ -35,7 +35,11 @@ block content
                         //td(valign="top")
                         //    span #{member.data.availability_duration.equality} #{member.data.availability_duration.num} #{member.data.availability_duration.unit}
                         td(valign="top")
-                            input(type="button",value="Request")
+                            script.
+                                var confirmAlert = function () {
+                                    alert('Click "OK" to send an email to this person\'s manager')
+                                }
+                            input(type="button",value="Request", onclick = 'confirmAlert()')
     else
         div.error-message-box
             p.

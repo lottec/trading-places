@@ -29,7 +29,7 @@ var getAllTeamMembers = function(req, callback) {
 
                         try {
                             var json = JSON.parse(result.text);
-                            if (json.data.availability == "on") {
+                            if (json.data.availability == "on" && json.data.manager != req.session.user.username) {
                                 teamMembers.push(json);
                             }
                         } catch (e) {
@@ -41,7 +41,6 @@ var getAllTeamMembers = function(req, callback) {
                         }
                         i++;
                     });
-
             });
         });
 };
