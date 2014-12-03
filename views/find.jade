@@ -1,7 +1,7 @@
 extends layout
 block content
     if session.user
-        div.find-members-container
+        div.team-members-container
             table
                 tr
                     td
@@ -10,28 +10,32 @@ block content
                         span Job Description
                     //td
                     //    span Availability
-        each member in team_members
-            tr
-                td.skills(valign="top")
-                    br
-                    span.skill-header Expert
-                    br
-                    span.
-                        #{member.data.expert}
-                    br
-                    span.skill-header Intermediate
-                    br
-                    span.
-                        #{member.data.intermediate}
-                    br
-                    span.skill-header Basic
-                    br
-                    span.
-                        #{member.data.basic}
-                td(valign="top")
-                    span #{member.data.job_title}
-                //td(valign="top")
-                //    span #{member.data.availability_duration.equality} #{member.data.availability_duration.num} #{member.data.availability_duration.unit}
+                    td
+                        span Request
+                each member in team_members
+                    tr
+                        td.skills(valign="top")
+                            br
+                            span.skill-header Expert
+                            br
+                            span.
+                                #{member.data.expert}
+                            br
+                            span.skill-header Intermediate
+                            br
+                            span.
+                                #{member.data.intermediate}
+                            br
+                            span.skill-header Basic
+                            br
+                            span.
+                                #{member.data.basic}
+                        td(valign="top")
+                            span #{member.data.job_title}
+                        //td(valign="top")
+                        //    span #{member.data.availability_duration.equality} #{member.data.availability_duration.num} #{member.data.availability_duration.unit}
+                        td(valign="top")
+                            input(type="button",value="Request")
     else
         div.error-message-box
             p.
