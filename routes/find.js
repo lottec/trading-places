@@ -29,7 +29,7 @@ var getAllTeamMembers = function(req, callback) {
 
                         try {
                             var json = JSON.parse(result.text);
-                            if (json.data.availability == "on" && json.data.manager != req.session.user.username) {
+                            if (json.data.availability == true && json.data.manager != req.session.user.username) {
                                 teamMembers.push(json);
                             }
                         } catch (e) {
@@ -46,3 +46,4 @@ var getAllTeamMembers = function(req, callback) {
 };
 
 module.exports = router;
+module.testExports = {getAllTeamMembers: getAllTeamMembers, request: request, host: host, port: port};

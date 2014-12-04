@@ -14,16 +14,22 @@ var loginPost = function(req, res) {
 
     request
     .get(host + ":" + port + "/riak/mt-register/" + username)
-    .end(function(result){
-      var hash = result.body.data.password;
-      var invalid = true;
+    .end(function(result) {
+          var invalid = true;
 
-      if (hash) {
-        if (bcrypt.compareSync(password, hash)) {
-          invalid = false;
-          req.session.user = {username: username};
-        }
-      }
+          try {
+            var hash = result.body.data.password;
+
+            if (hash) {
+              if (bcrypt.compareSync(password, hash)) {
+                invalid = false;
+                req.session.user = {username: username};
+              }
+            }
+          } catch(error) {
+            invalid = false;
+          }
+
       res.redirect('/?invalid=' + invalid);
     });
 
@@ -84,7 +90,15 @@ var loginPost = function(req, res) {
       request
           .get(host + ":" + port + "/riak/mt-register/" + username)
           .end(function(result){
-            if (result.body.data) {
+            try {
+              if (result.body.data.password) {
+                invalid = true;
+              }
+            } catch(error) {
+
+            }
+
+            if (invalid) {
               res.redirect('/register/?user_exists=true');
             } else {
               request.post(host + ":" + port + "/riak/mt-register/" + username)

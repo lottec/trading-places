@@ -41,7 +41,7 @@ var addPost = function(req, res) {
                         "expert": req.body.expert,
                         "intermediate": req.body.intermediate,
                         "basic": req.body.basic,
-                        "availability": req.body.availability,
+                        "availability": req.body.availability?true:false,
                         "availability_duration": {
                             "equality": req.body.equality,
                             "number": req.body.num,
