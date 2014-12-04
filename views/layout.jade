@@ -15,8 +15,8 @@ body
       div(class='navigation-item')
         a(class='navigation-item-text', href='/find') Find
       div(class='right-container')
-        if user
-          span(class='logout-text') #{user.username}&nbsp;
+        if session.user
+          span(class='logout-text') #{session.user.username}&nbsp;
             a(href='/users/logout') (Logout)
     div(class='content-wrapper')
       block content
