@@ -8,8 +8,8 @@ block content
                         span Skills &amp; Ability Levels
                     td
                         span Job Description
-                    //td
-                    //    span Availability
+                    td
+                        span Availability
                     td
                         span Request
                 each member in team_members
@@ -32,8 +32,8 @@ block content
                                 #{member.data.basic}
                         td(valign="top")
                             span #{member.data.job_title}
-                        //td(valign="top")
-                        //    span #{member.data.availability_duration.equality} #{member.data.availability_duration.num} #{member.data.availability_duration.unit}
+                        td(valign="top")
+                            span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
                         td(valign="top")
                             script.
                                 var confirmAlert = function () {

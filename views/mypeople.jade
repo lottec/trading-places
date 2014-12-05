@@ -65,6 +65,8 @@ block content
                     td
                         span Availability
                     td
+                        span Duration of Availability
+                    td
                         span Action
 
                 each member in team_members
@@ -90,6 +92,8 @@ block content
                             span #{member.data.job_title}
                         td(valign="top")
                             span #{member.data.availability}
+                        td(valign="top")
+                            span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
                         td(valign="top")
                             input(type="button",value="Manage")
         script.
