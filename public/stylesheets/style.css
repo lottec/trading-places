@@ -367,6 +367,10 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.add-person-container .fields-container #availability-container {
+  display: none;
+}
+
 
 
 .team-members-container {

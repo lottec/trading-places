@@ -19,7 +19,7 @@ block content
                         div(data-tags-input-name="basic_skills", id="basicskills")
                     div Available now?
                         input(type="checkbox", name="availability", id="availability")
-                    div Available for
+                    div(id="availability-container", name="availability-container") Available for
                         br
                         select(name="equality", id="equality")
                             option() More than
@@ -121,6 +121,10 @@ block content
                         event.preventDefault();
                         return false;
                     }
+                });
+
+                $('#availability').click(function() {
+                    $('#availability-container').is(":visible")?$('#availability-container').fadeOut():$('#availability-container').fadeIn();
                 });
             });
 
