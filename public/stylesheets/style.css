@@ -314,7 +314,7 @@ input[type=submit] {
   border-radius: 5px;
   margin: 0 auto;
   margin-top: 30px;
-  width: 250px;
+  width: 350px;
   padding: 0;
   overflow: hidden;
   font-size: 10px;
@@ -334,8 +334,8 @@ input[type=submit] {
   font-size: 10px;
 }
 
-.add-person-container input[type=text],input[type=password],input[type=email],input[type=number] {
-  width: 190px;
+.add-person-container .fields-container input[type=text],input[type=email],input[type=number] {
+  width: 290px;
   height: 20px;
   margin: 0 auto;
   margin-bottom: 10px;

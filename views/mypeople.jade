@@ -12,11 +12,11 @@ block content
                     div
                         input(type="text", name="job_title", id="job_title", placeholder="Job title", required)
                     div
-                        input(type="text", name="expert", id="expert", placeholder="Expert skills...")
+                        div(data-tags-input-name="expert_skills", id="expertskills")
                     div
-                        input(type="text", name="intermediate", id="intermediate", placeholder="Intermediate skills...")
+                        div(data-tags-input-name="intermediate_skills", id="intermediateskills")
                     div
-                        input(type="text", name="basic", id="basic", placeholder="Basic skills...")
+                        div(data-tags-input-name="basic_skills", id="basicskills")
                     div Available now?
                         input(type="checkbox", name="availability", id="availability")
                     div Available for
@@ -92,6 +92,33 @@ block content
                             span #{member.data.availability}
                         td(valign="top")
                             input(type="button",value="Manage")
+        script.
+            var options = {
+                "no-duplicate": true,
+                "no-duplicate-callback": false,
+                "forbidden-chars-callback": false,
+                "forbidden-words-callback": false,
+                "tag-char": "·",
+                "spacebar": true
+            };
+            $("#expertskills").tagging(options);
+            $("#expertskills .type-zone").attr("placeholder", "Enter expert skills");
+
+            $("#intermediateskills").tagging(options);
+            $("#intermediateskills .type-zone").attr("placeholder", "Enter intermediate skills");
+
+            $("#basicskills").tagging(options);
+            $("#basicskills .type-zone").attr("placeholder", "Enter basic skills");
+
+
+            $(document).ready(function () {
+                $(window).keydown(function (event) {
+                    if (event.keyCode == 13) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            });
 
     else
         div.error-message-box

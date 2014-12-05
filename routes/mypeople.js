@@ -38,9 +38,9 @@ var addPost = function(req, res) {
                         "first_name": req.body.first_name,
                         "surname": req.body.surname,
                         "job_title": req.body.job_title,
-                        "expert": req.body.expert,
-                        "intermediate": req.body.intermediate,
-                        "basic": req.body.basic,
+                        "expert": req.body['expert_skills[]'],
+                        "intermediate": req.body['intermediate_skills[]'],
+                        "basic": req.body['basic_skills[]'],
                         "availability": req.body.availability?true:false,
                         "availability_duration": {
                             "equality": req.body.equality,
