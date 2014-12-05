@@ -29,6 +29,7 @@ var getAllTeamMembers = function(req, callback) {
 
                         try {
                             var json = JSON.parse(result.text);
+                            json.data['key'] = key;
                             if (json.data.availability == true && json.data.manager != req.session.user.username) {
                                 teamMembers.push(json);
                             }

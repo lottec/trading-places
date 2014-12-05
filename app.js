@@ -14,6 +14,7 @@ var register = require('./routes/register');
 var myPeople = require('./routes/mypeople');
 var find = require('./routes/find');
 var deleteBucket = require('./routes/delete');
+var request = require('./routes/request');
 
 var app = express();
 app.use(session({cookie: {maxAge: 30*60*1000}, secret: 'This is a secret', resave: true, saveUninitialized: true}));
@@ -41,6 +42,7 @@ app.use('/register', register);
 app.use('/mypeople', myPeople);
 app.use('/find', find);
 app.use('/delete', deleteBucket);
+app.use('/request', request);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

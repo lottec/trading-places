@@ -35,11 +35,24 @@ block content
                         td(valign="top")
                             span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
                         td(valign="top")
-                            script.
-                                var confirmAlert = function () {
-                                    alert('Click "OK" to send an email to this person\'s manager')
-                                }
-                            input(type="button",value="Request", onclick = 'confirmAlert()')
+                            a(href="#dialog", name="modal", onclick="updateModalFields('#{member.data.key}');") Request
+        div(id="boxes")
+            div(id="dialog", class="window")
+                h1 Confirm your request
+                div(class="content") Are you sure you want to complete this request?
+                div(class="buttons-container")
+                    form(method="post", action="/request", id="confirm", name="confirm")
+                        input(type="hidden", name="team_member_id", id="team_member_id", value="")
+                        input(type="hidden", name="manager", id="manager", value="")
+                        input(type="button", class="cancel-button close", value="Cancel")
+                        input(type="submit", class="confirm-button", value="Confirm")
+            div(id="mask")
+        script.
+            function updateModalFields(team_member, manager) {
+                $("#boxes #dialog #team_member").val(team_member);
+                $("#boxes #dialog #manager").val(manager);
+            }
+            
     else
         div.error-message-box
             p.

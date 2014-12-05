@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var request = require('superagent');
+var host = 'http://db.cistechfutures.net';
+var port = 8098;
 
-router.get('/', function(req,res) {
-    res.render('register', {title: 'Register details', user_exists: req.param("user_exists")});
-
-    request.post(host + ":" + port + "/riak/mt-add-team-member/")
+router.post('/', function(req,res) {
+    request.post(host + ":" + port + "/riak/mt-requests/")
         .set('Content-Type', 'application/json')
-        //.set('x-riak-index-manager_bin', 'testing')
         .send({
             "event": "initiate_request",
             "timestamp": Date.now(),
@@ -17,7 +17,7 @@ router.get('/', function(req,res) {
             }
         })
         .end(function () {
-            res.redirect('/mypeople');
+            res.redirect('/find');
         });
 });
 
