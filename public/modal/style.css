@@ -66,3 +66,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+#boxes #dialog #mail {
+    display: hidden;
+}
