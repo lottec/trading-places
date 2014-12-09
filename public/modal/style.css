@@ -3,7 +3,6 @@
     left:0;
     top:0;
     z-index:9000;
-    background-color: transparent;
     display:none;
 }
 
@@ -69,4 +68,12 @@
 
 #boxes #dialog #mail {
     display: hidden;
+}
+
+#request-container {
+
+}
+
+#confirm-container {
+    display: none;
 }
