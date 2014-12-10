@@ -64,16 +64,23 @@ block content
                             input(type="button", class="cancel-button close", value="Cancel")
                             input(type="submit", class="confirm-button", value="Confirm")
             div(id="mask")
-<<<<<<< HEAD
         script.
             function updateModalFields(team_member, manager, manager_email) {
                 $("#boxes #dialog #team_member").val(team_member);
                 $("#boxes #dialog #manager").val(manager);
                 $("#boxes #dialog #manager_email").val(manager_email);
-                console.log(manager_email);
+                $("#boxes #confirm-modal #team_member").val(team_member);
+                $("#boxes #confirm-modal #manager").val(manager);
+            }
+            function showConfirmWindow() {
+                $("#request-container").hide();
+                $("#confirm-container").show();
+            }
+            function resetWindows() {
+                $("#request-container").show();
+                $("#confirm-container").hide();
             }
             $('.confirm-button').click(function() {
-                console.log('here');
                 var email = $("#boxes #dialog #manager_email").val();
                 var manager = $("#boxes #dialog #manager").val();
                 var team_member = $("#boxes #dialog #team_member").val();
@@ -99,29 +106,7 @@ block content
                             *insert requesting manager';
                 window.open(href);
             });
-=======
-            script.
-                function updateModalFields(team_member, manager, manager_email) {
-                    $("#boxes #dialog #team_member").val(team_member);
-                    $("#boxes #dialog #manager").val(manager);
-                    $("#boxes #dialog #manager_email").val(manager_email);
 
-                    $("#boxes #confirm-modal #team_member").val(team_member);
-                    $("#boxes #confirm-modal #manager").val(manager);
-                }
-
-                function showConfirmWindow() {
-                    $("#request-container").hide();
-                    $("#confirm-container").show();
-                }
-
-                function resetWindows() {
-                    $("#request-container").show();
-                    $("#confirm-container").hide();
-                }
-
-
->>>>>>> 8b3e69cf6f370020e3a24b8e61210fe2db511509
     else
         div.login-logo
             img(src='images/tradingplaces.png')

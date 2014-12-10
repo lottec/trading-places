@@ -16,7 +16,6 @@ var addPost = function(req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
-<<<<<<< HEAD
         console.log(req.session.user.username);
         request
             .get(host + ":" + port + "/riak/mt-register/" + req.session.user.username)
@@ -61,45 +60,6 @@ var addPost = function(req, res) {
                         });
                 }
             });
-=======
-
-        var invalid = false;
-
-        if (!validator.isLength(req.body.first_name, 1) || !validator.isLength(req.body.surname, 1) ||
-            !validator.isLength(req.body.job_title, 1)) {
-            invalid = true;
-        }
-
-        if (invalid) {
-            res.redirect('/mypeople?invalid=true');
-        } else {
-            request.post(host + ":" + port + "/riak/mt-add-team-member/")
-                .set('Content-Type', 'application/json')
-                //.set('x-riak-index-manager_bin', 'testing')
-                .send({
-                    "event": "add_team_member",
-                    "timestamp": Date.now(),
-                    "data": {
-                        "first_name": req.body.first_name,
-                        "surname": req.body.surname,
-                        "job_title": req.body.job_title,
-                        "expert": req.body['expert_skills[]'],
-                        "intermediate": req.body['intermediate_skills[]'],
-                        "basic": req.body['basic_skills[]'],
-                        "availability": req.body.availability?true:false,
-                        "availability_duration": {
-                            "equality": req.body.availability?req.body.equality:null,
-                            "number": req.body.availability?req.body.num:null,
-                            "unit": req.body.availability?req.body.unit:null
-                        },
-                        "manager": req.session.user.username
-                    }
-                })
-                .end(function () {
-                    res.redirect('/mypeople');
-                });
-        }
->>>>>>> 8b3e69cf6f370020e3a24b8e61210fe2db511509
     }
 };
 
