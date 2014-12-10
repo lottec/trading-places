@@ -60,7 +60,7 @@
     border-radius: 3px;
     color: #ffffff;
     padding: 5px;
-    width: 55px;
+    min-width: 55px;
     text-align: center;
     font-weight: bold;
     cursor: pointer;

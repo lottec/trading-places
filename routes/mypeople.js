@@ -7,7 +7,7 @@ var validator = require('validator');
 
 router.get('/', function(req,res) {
     getTeamMembers(req, function(teamMembers) {
-        res.render('mypeople', { title: 'My People', team_members: teamMembers});
+        res.render('mypeople', { title: 'My People - Trading Places', team_members: teamMembers, route: 'mypeople' });
     });
     
 });
@@ -43,9 +43,9 @@ var addPost = function(req, res) {
                         "basic": req.body['basic_skills[]'],
                         "availability": req.body.availability?true:false,
                         "availability_duration": {
-                            "equality": req.body.equality,
-                            "number": req.body.num,
-                            "unit": req.body.unit
+                            "equality": req.body.availability?req.body.equality:null,
+                            "number": req.body.availability?req.body.num:null,
+                            "unit": req.body.availability?req.body.unit:null
                         },
                         "manager": req.session.user.username
                     }

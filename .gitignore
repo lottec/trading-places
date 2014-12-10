@@ -4,3 +4,4 @@ npm-debug.log
 test/coverage/
 coverage/
 workspace.xml
+.idea/workspace.xml
