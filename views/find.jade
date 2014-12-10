@@ -85,7 +85,6 @@ block content
                 var manager = $("#boxes #dialog #manager").val();
                 var team_member = $("#boxes #dialog #team_member").val();
 
-
                 var href = 'mailto:' + email +
                             '?subject= Request' +
                             '&bcc= test.tradingplaces@gmail.com' +
@@ -100,7 +99,8 @@ block content
                             'If we need to discuss more then let me know the details.%0D%0A%0D%0A' +
                             'Kind regards,%0D%0A' +
                             '*insert requesting manager';
-                window.open(href);
+                window.location.href = href;
+                return false;
             });
 
     else
