@@ -18,38 +18,30 @@ var getAllTeamMembers = function(req, callback) {
     request
         .get(host + ":" + port + "/buckets/mt-add-team-member/keys?keys=true")
         .end(function(error, result){
+
             var keys = JSON.parse(result.text).keys;
             keys.forEach(function(key) {
                 request
                     .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
                     .end(function(error, result){
+
                         try {
                             var json = JSON.parse(result.text);
                             json.data['key'] = key;
+
                             if (json.data.availability == true && json.data.manager != req.session.user.username) {
-                                json.data['manager_email'] = getManagerEmail(json.data.manager);
                                 teamMembers.push(json);
                             }
                         } catch (e) {
 
                         }
                         if (i == keys.length) {
+                            //console.log(teamMembers);
                             callback(teamMembers);
                         }
                         i++;
                     });
             });
-        });
-};
-
-var getManagerEmail = function(key) {
-
-    request
-        .get(host + ":" + port + "/riak/mt-register/" + key)
-        .end(function(error, result) {
-            console.log(result);
-            var email = result.body.data.email;
-            return email;
         });
 };
 
@@ -63,3 +55,5 @@ module.testExports = {getAllTeamMembers: getAllTeamMembers, request: request, ho
 //                '&body=' + body +
 //
 //                $("mail").attr("href",href);
+
+//var email = $("#boxes #dialog #manager_email").val();
