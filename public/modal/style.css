@@ -3,7 +3,6 @@
     left:0;
     top:0;
     z-index:9000;
-    background-color: transparent;
     display:none;
 }
 
@@ -61,7 +60,7 @@
     border-radius: 3px;
     color: #ffffff;
     padding: 5px;
-    width: 55px;
+    min-width: 55px;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
@@ -69,4 +68,12 @@
 
 #boxes #dialog #mail {
     display: hidden;
+}
+
+#request-container {
+
+}
+
+#confirm-container {
+    display: none;
 }

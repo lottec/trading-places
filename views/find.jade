@@ -1,54 +1,70 @@
 extends layout
 block content
     if session.user
+        if success == 'true'
+            div(class="success-box") Your request has been confirmed
+        if success == 'false'
+            div(class="error-box") Error
         div.team-members-container
-            table
+            table(cellspacing="0")
                 tr
-                    td
+                    td.header
                         span Skills &amp; Ability Levels
-                    td
+                    td.header
                         span Job Description
-                    td
+                    td.header
                         span Availability
-                    td
+                    td.header
                         span Request
-                each member in team_members
-                    tr
-                        td.skills(valign="top")
-                            br
-                            span.skill-header Expert
-                            br
-                            span.
-                                #{member.data.expert}
-                            br
-                            span.skill-header Intermediate
-                            br
-                            span.
-                                #{member.data.intermediate}
-                            br
-                            span.skill-header Basic
-                            br
-                            span.
-                                #{member.data.basic}
-                        td(valign="top")
-                            span #{member.data.job_title}
-                        td(valign="top")
-                            span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
-                        td(valign="top")
-                            a(href="#dialog", name="modal", onclick="updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}');") Request
+                if !team_members.length
+                    td(colspan="4") There are currently no people available
+                else
+                    each member in team_members
+                        tr
+                            td.skills(valign="top")
+                                div.skill-header Expert
+                                div.skill-content
+                                    span.
+                                        #{member.data.expert}
+                                div.skill-header Intermediate
+                                div.skill-content
+                                    span.
+                                        #{member.data.intermediate}
+                                div.skill-header Basic
+                                div.skill-content
+                                    span.
+                                        #{member.data.basic}
+                            td(valign="top")
+                                span #{member.data.job_title}
+                            td(valign="top")
+                                span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
+                            td(valign="top")
+                                div.request-link-container
+                                    a(href="#dialog", name="modal", class="request-link", onclick="resetWindows(); updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}');") Request
         div(id="boxes")
             div(id="dialog", class="window")
-                h1 Confirm your request
-                div(class="content") Are you sure you want to complete this request?
-                div(class="buttons-container")
-                    a(id="mail", name="mail")
-                    form(method="post", action="/request", id="confirm", name="confirm")
-                        input(type="hidden", name="team_member_id", id="team_member_id", value="")
-                        input(type="hidden", name="manager", id="manager", value="")
-                        input(type="hidden", name="manager_email", id="manager_email", value="")
-                        input(type="button", class="cancel-button close", value="Cancel")
-                        input(type="submit", class="confirm-button", value="Confirm")
+                div(id="request-container")
+                    h1 Your request
+                    div(class="content") Continuing with this request will open your default email client with an email for you to complete and send this team member's manager.
+                    div(class="buttons-container")
+                        a(id="mail", name="mail")
+                        form(method="post", action="/request", id="confirm", name="confirm")
+                            input(type="hidden", name="team_member_id", id="team_member_id", value="")
+                            input(type="hidden", name="manager", id="manager", value="")
+                            input(type="hidden", name="manager_email", id="manager_email", value="")
+                            input(type="button", class="cancel-button close", value="Cancel")
+                            input(type="button", class="confirm-button", value="Continue", onclick="showConfirmWindow();")
+                div(id="confirm-container")
+                    h1 Confirm your request
+                    div(class="content") Please complete and send the email and press 'Confirm' after you have sent it.
+                    div(class="buttons-container")
+                        form(method="post", action="/request", id="send-request", name="send-request")
+                            input(type="hidden", name="team_member_id", id="team_member_id", value="")
+                            input(type="hidden", name="manager", id="manager", value="")
+                            input(type="button", class="cancel-button close", value="Cancel")
+                            input(type="submit", class="confirm-button", value="Confirm")
             div(id="mask")
+<<<<<<< HEAD
         script.
             function updateModalFields(team_member, manager, manager_email) {
                 $("#boxes #dialog #team_member").val(team_member);
@@ -83,7 +99,34 @@ block content
                             *insert requesting manager';
                 window.open(href);
             });
+=======
+            script.
+                function updateModalFields(team_member, manager, manager_email) {
+                    $("#boxes #dialog #team_member").val(team_member);
+                    $("#boxes #dialog #manager").val(manager);
+                    $("#boxes #dialog #manager_email").val(manager_email);
+
+                    $("#boxes #confirm-modal #team_member").val(team_member);
+                    $("#boxes #confirm-modal #manager").val(manager);
+                }
+
+                function showConfirmWindow() {
+                    $("#request-container").hide();
+                    $("#confirm-container").show();
+                }
+
+                function resetWindows() {
+                    $("#request-container").show();
+                    $("#confirm-container").hide();
+                }
+
+
+>>>>>>> 8b3e69cf6f370020e3a24b8e61210fe2db511509
     else
+        div.login-logo
+            img(src='images/tradingplaces.png')
         div.error-message-box
             p.
                 You must be logged in to use this page.
+            br
+            a.login-link(href="/") Login

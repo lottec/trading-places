@@ -1,6 +1,7 @@
 extends layout
 block content
     if session.user
+        div.add-team-member-button + Add Team Member
         div.add-person-container
             p.header Add Team Member
             form(name="add", id="add", action="/mypeople/add_team_member", method="post")
@@ -53,49 +54,48 @@ block content
                 div.button-container
                     div
                         input(type="submit", value="Add Team Member")
-        div.team-members-container
-            table
-                tr
-                    td
-                        span Name
-                    td
-                        span Skills &amp; Ability Levels
-                    td
-                        span Job Description
-                    td
-                        span Availability
-                    td
-                        span Duration of Availability
-                    td
-                        span Action
-
-                each member in team_members
+        div
+            div.team-members-container
+                table(cellspacing="0")
                     tr
-                        td(valign="top")
-                            span #{member.data.surname}, #{member.data.first_name}
-                        td.skills(valign="top")
-                            span.skill-header Expert
-                            br
-                            span.
-                                #{member.data.expert}
-                            br
-                            span.skill-header Intermediate
-                            br
-                            span.
-                                #{member.data.intermediate}
-                            br
-                            span.skill-header Basic
-                            br
-                            span.
-                                #{member.data.basic}
-                        td(valign="top")
-                            span #{member.data.job_title}
-                        td(valign="top")
-                            span #{member.data.availability}
-                        td(valign="top")
-                            span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
-                        td(valign="top")
-                            input(type="button",value="Manage")
+                        td.header
+                            span Name
+                        td.header
+                            span Skills &amp; Ability Levels
+                        td.header
+                            span Job Description
+                        td.header
+                            span Availability
+                        td.header
+                            span Duration of Availability
+                    if !team_members.length
+                        td(colspan="5") You haven't added any team members
+                    else
+                        each member in team_members
+                            tr
+                                td(valign="top")
+                                    span #{member.data.surname}, #{member.data.first_name}
+                                td.skills(valign="top")
+                                    div.skill-header Expert
+                                    div.skill-content
+                                        span.
+                                            #{member.data.expert}
+                                    div.skill-header Intermediate
+                                    div.skill-content
+                                        span.
+                                            #{member.data.intermediate}
+                                    div.skill-header Basic
+                                    div.skill-content
+                                        span.
+                                            #{member.data.basic}
+                                td(valign="top")
+                                    span #{member.data.job_title}
+                                td(valign="top")
+                                    if member.data.availability === "true"
+                                        div.available-icon
+                                td(valign="top")
+                                    span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
+
         script.
             var options = {
                 "no-duplicate": true,
@@ -124,11 +124,21 @@ block content
                 });
 
                 $('#availability').click(function() {
-                    $('#availability-container').is(":visible")?$('#availability-container').fadeOut():$('#availability-container').fadeIn();
+                    $('#availability-container').is(":visible")?$('#availability-container').hide():$('#availability-container').fadeIn();
                 });
+
+                $('.add-team-member-button').click(function() {
+                    $('.add-person-container').fadeIn();
+                    $('.add-team-member-button').hide();
+                });
+
             });
 
     else
+        div.login-logo
+            img(src='images/tradingplaces.png')
         div.error-message-box
             p.
                 You must be logged in to use this page.
+            br
+            a.login-link(href="/") Login

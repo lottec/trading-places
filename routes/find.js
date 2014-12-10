@@ -6,7 +6,7 @@ var port = 8098;
 
 router.get('/', function(req,res) {
     getAllTeamMembers(req, function(teamMembers) {
-        res.render('find', { title: 'Find', team_members: teamMembers});
+        res.render('find', { title: 'Find - Trading Places', team_members: teamMembers, success: req.param("success"), route: 'find'});
     });
 });
 

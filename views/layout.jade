@@ -10,17 +10,24 @@ html
     script(src='/taggingJS/tagging.min.js')
     script(src='/modal/modal.js')
 body
+  if session.user
     div(class='navigation-container')
       div(class='header-logo')
         a(href='/')
           img(src='images/tradingplaces.png')
       div(class='navigation-item')
-        a(class='navigation-item-text', href='/mypeople') My People
+        if route == 'mypeople'
+          a(class='navigation-item-text selected', href='/mypeople') My People
+        else
+          a(class='navigation-item-text', href='/mypeople') My People
       div(class='navigation-item')
-        a(class='navigation-item-text', href='/find') Find
+        if route == 'find'
+          a(class='navigation-item-text selected', href='/find') Find
+        else
+          a(class='navigation-item-text', href='/find') Find
       div(class='right-container')
-        if session.user
-          span(class='logout-text') #{session.user.username}&nbsp;
-            a(href='/users/logout') (Logout)
-    div(class='content-wrapper')
-      block content
+        span(class='logout-text') #{session.user.username}&nbsp;
+          a(href='/users/logout', class='logout') Logout
+  div(class='content-wrapper')
+    block content
+  script(type="text/javascript", src="/javascript/retina.min.js")

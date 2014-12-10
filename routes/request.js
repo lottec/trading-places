@@ -16,8 +16,12 @@ router.post('/', function(req,res) {
                 "requested_team_member_id": req.body.team_member_id
             }
         })
-        .end(function () {
-            res.redirect('/find');
+        .end(function (error, result) {
+            if (error) {
+                res.redirect('/find?success=false');
+            } else {
+                res.redirect('/find?success=true');
+            }
         });
 });
 

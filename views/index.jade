@@ -10,12 +10,14 @@ block content
       div.error-container
       p.
         Invalid username/password combination, please try again.
+    div.login-logo
+      img(src='images/tradingplaces.png')
     div.login-container
       p.header Sign in
       form(name="login", action="/users/login", method="post")
         div.fields-container
-          input(type="text", name="username", placeholder="Username", value="test")
-          input(type="password", name="password", placeholder="Password", value="test")
+          input(type="text", name="username", placeholder="Username")
+          input(type="password", name="password", placeholder="Password")
         div.button-container
           input(type="submit", value="Continue")
     div.new-user-container
