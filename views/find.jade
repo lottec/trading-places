@@ -89,21 +89,17 @@ block content
                 var href = 'mailto:' + email +
                             '?subject= Request' +
                             '&bcc= test.tradingplaces@gmail.com' +
-                            '&body=\
-                            Hi ' + manager + '.\
-                            Hope you are well.\
-                            I am wondering if it\'s possible to borrow ' + team_member + ' for a bit to help solve a problem we have.\
-                            \
-                            Ideally I would need them until *date*, but completely understand this might not be possible.\
-                            \
-                            The details of the project are:\
-                            *insert details*\
-                            \
-                            If this is okay please follow this link *insert link to manage, with highlighted minion* and set an initial date I can have them until.\
-                            If we need to discuss more then let me know the details.\
-                            \
-                            Kind regards,\
-                            *insert requesting manager';
+                            '&body=' +
+                            'Hi ' + manager + '.%0D%0A%0D%0A' +
+                            'Hope you are well.%0D%0A%0D%0A' +
+                            'I am wondering if it\'s possible to borrow ' + team_member + ' for a bit to help solve a problem we have.%0D%0A%0D%0A' +
+                            'Ideally I would need them until *date*, but completely understand this might not be possible.%0D%0A%0D%0A' +
+                            'The details of the project are:%0D%0A' +
+                            '*insert details*%0D%0A%0D%0A' +
+                            'If this is okay please follow this link *insert link to manage, with highlighted minion* and set an initial date I can have them until.' +
+                            'If we need to discuss more then let me know the details.%0D%0A%0D%0A' +
+                            'Kind regards,%0D%0A' +
+                            '*insert requesting manager';
                 window.open(href);
             });
 
