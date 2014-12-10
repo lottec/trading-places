@@ -453,14 +453,20 @@ input[type=submit] {
   background: #90C487;
   color: #ffffff;
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 10px;
+  margin-top: 20px;
+  min-width: 50px;
+  display: inline-block;
 }
 
 .error-box {
   background: #90C487;
   color: #ffffff;
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 10px;
+  margin-top: 20px;
+  min-width: 50px;
+  display: inline-block;
 }
 
 .login-logo {
