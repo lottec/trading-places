@@ -53,7 +53,7 @@ block content
                             input(type="hidden", name="manager", id="manager", value="")
                             input(type="hidden", name="manager_email", id="manager_email", value="")
                             input(type="button", class="cancel-button close", value="Cancel")
-                            input(type="button", class="confirm-button", value="Continue", onclick="showConfirmWindow();")
+                            input(type="button", id="confirm-button", class="confirm-button", value="Continue", onclick="showConfirmWindow();")
                 div(id="confirm-container")
                     h1 Confirm your request
                     div(class="content") Please complete and send the email and press 'Confirm' after you have sent it.
@@ -80,7 +80,7 @@ block content
                 $("#request-container").show();
                 $("#confirm-container").hide();
             }
-            $('.confirm-button').click(function() {
+            $('#confirm-button').click(function() {
                 var email = $("#boxes #dialog #manager_email").val();
                 var manager = $("#boxes #dialog #manager").val();
                 var team_member = $("#boxes #dialog #team_member").val();
