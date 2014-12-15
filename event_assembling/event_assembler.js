@@ -13,24 +13,13 @@ var event = {"timestamp": 12345 ,
     }
 }
 
-receive event
-compile into object
-save in riak db
-
-
-
-
 var sendEvent = function(event, callback) {
     var eventJSON = {timestamp: Date.now(), data: event.data};
-    riakWrite.write(event.event, eventJSON, callback);
+    riakWrite.post(event.event, eventJSON, callback);
 };
 
 
 var eventToObject = function(type, data) {
-    take first part of type name (eg user) and use as riak bucket name
-    take second part of type name (eg create/update/del) and translate to http verb
-
-
 
     user-create
     user-update
@@ -46,12 +35,15 @@ var eventToObject = function(type, data) {
     var bucket = typeSplit[0];
     var action = typeSplit[1];
 
+    if (action == 'create'){
 
+    } else if (action == 'update'){
 
+    } else if (action == 'delete'){
 
+    }
 
-
-    riakWrite.write(bucket, data);
+    riakWrite.post(bucket, data);
 
 
 }

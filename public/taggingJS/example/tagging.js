@@ -126,7 +126,7 @@
                 return false;
             }
 
-            // If case-sensitive is true, write everything in lowercase
+            // If case-sensitive is true, post everything in lowercase
             if ( ! self.config[ "case-sensitive" ] ) {
                 text = text.toLowerCase();
             }
