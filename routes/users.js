@@ -7,7 +7,7 @@ var host = 'http://db.cistechfutures.net';
 var port = 8098;
 
 var loginPost = function(req, res) {
-  var username = req.body.username;
+  var username = req.body.username.toLowerCase();
   var password = req.body.password;
 
   if (username && password) {
@@ -23,7 +23,7 @@ var loginPost = function(req, res) {
             if (hash) {
               if (bcrypt.compareSync(password, hash)) {
                 invalid = false;
-                req.session.user = {username: username, full_name: result.body.data.first_name + ' ' + result.body.data.surname};
+                req.session.user = {username: username, full_name: result.body.data.first_name + ' ' + result.body.data.surname, email: result.body.data.email};
               }
             }
           } catch(error) {
@@ -75,7 +75,7 @@ var loginPost = function(req, res) {
 
 
   var registerPost = function(req, res) {
-    var username = req.body.username;
+    var username = req.body.username.toLowerCase();
     var password = req.body.password;
     var salt;
     var hash;

@@ -92,6 +92,7 @@ block content
                 var name = '#{session.user.full_name}';
                 var href = 'mailto:' + email +
                             '?subject= Request' +
+                            '&from=#{session.user.email}' +
                             '&bcc= test.tradingplaces@gmail.com' +
                             '&body=' +
                             'Hi ' + manager + '.%0D%0A%0D%0A' +
