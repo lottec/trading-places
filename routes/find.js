@@ -36,7 +36,6 @@ var getAllTeamMembers = function(req, callback) {
 
                         }
                         if (i == keys.length) {
-                            //console.log(teamMembers);
                             callback(teamMembers);
                         }
                         i++;
@@ -47,13 +46,3 @@ var getAllTeamMembers = function(req, callback) {
 
 module.exports = router;
 module.testExports = {getAllTeamMembers: getAllTeamMembers, request: request, host: host, port: port};
-
-//for jade updateModalFields
-//                var href = "mailto:' + manager.email +
-//                '?subject=' + subject +
-//                '&bcc=' + bcc +
-//                '&body=' + body +
-//
-//                $("mail").attr("href",href);
-
-//var email = $("#boxes #dialog #manager_email").val();

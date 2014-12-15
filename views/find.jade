@@ -66,10 +66,10 @@ block content
             div(id="mask")
         script.
             function updateModalFields(team_member, manager, manager_email) {
-                $("#boxes #dialog #team_member").val(team_member);
+                $("#boxes #dialog #team_member_id").val(team_member);
                 $("#boxes #dialog #manager").val(manager);
                 $("#boxes #dialog #manager_email").val(manager_email);
-                $("#boxes #confirm-modal #team_member").val(team_member);
+                $("#boxes #confirm-modal #team_member_id").val(team_member);
                 $("#boxes #confirm-modal #manager").val(manager);
             }
             function showConfirmWindow() {
@@ -83,7 +83,7 @@ block content
             $('#confirm-button').click(function() {
                 var email = $("#boxes #dialog #manager_email").val();
                 var manager = $("#boxes #dialog #manager").val();
-                var team_member = $("#boxes #dialog #team_member").val();
+                var team_member = $("#boxes #dialog #team_member_id").val();
 
                 var href = 'mailto:' + email +
                             '?subject= Request' +
@@ -91,7 +91,7 @@ block content
                             '&body=' +
                             'Hi ' + manager + '.%0D%0A%0D%0A' +
                             'Hope you are well.%0D%0A%0D%0A' +
-                            'I am wondering if it\'s possible to borrow ' + team_member + ' for a bit to help solve a problem we have.%0D%0A%0D%0A' +
+                            'I am wondering if it\'s possible to borrow your team member (http://localhost:3000/mypeople?team_member_id=' + team_member + ') for a bit to help solve a problem we have.%0D%0A%0D%0A' +
                             'Ideally I would need them until *date*, but completely understand this might not be possible.%0D%0A%0D%0A' +
                             'The details of the project are:%0D%0A' +
                             '*insert details*%0D%0A%0D%0A' +

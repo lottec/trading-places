@@ -7,7 +7,7 @@ var validator = require('validator');
 
 router.get('/', function(req,res) {
     getTeamMembers(req, function(teamMembers) {
-        res.render('mypeople', { title: 'My People - Trading Places', team_members: teamMembers, route: 'mypeople' });
+        res.render('mypeople', { title: 'My People - Trading Places', team_members: teamMembers, route: 'mypeople', team_member_id: req.param("team_member_id")});
     });
     
 });
@@ -82,7 +82,9 @@ var getTeamMembers = function(req, callback) {
 
                         try {
                             var json = JSON.parse(result.text);
+
                             if (json.data.manager == req.session.user.username) {
+                                json.data['key'] = key;
                                 teamMembers.push(json);
                             }
                         } catch (e) {

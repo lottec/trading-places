@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
   if (req.session.user){
     res.redirect('/mypeople');
   } else {
-    res.render('index', { title: 'Trading Places', user: req.session.user,  invalid: req.param("invalid")});
+    res.render('index', { title: 'Trading Places', user: req.session.user,  invalid: req.param("invalid"), callbackURL: req.param("callbackURL")});
   }
 });
 

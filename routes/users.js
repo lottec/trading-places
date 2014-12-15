@@ -29,8 +29,22 @@ var loginPost = function(req, res) {
           } catch(error) {
             invalid = false;
           }
+          var callbackURLParam = req.body.callbackURL;
 
-      res.redirect('/?invalid=' + invalid);
+          if (!invalid) {
+
+            res.redirect(callbackURLParam);
+
+          } else {
+
+            var url = '/?invalid=' + invalid;
+            if (callbackURLParam) {
+              url = url + '&callbackURL=' + callbackURLParam;
+            }
+
+            res.redirect(url);
+
+          }
     });
 
   } else {

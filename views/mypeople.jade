@@ -72,7 +72,7 @@ block content
                         td(colspan="5") You haven't added any team members
                     else
                         each member in team_members
-                            tr
+                            tr(id="#{member.data.key}", class=(team_member_id === member.data.key)?'target':'')
                                 td(valign="top")
                                     span #{member.data.surname}, #{member.data.first_name}
                                 td.skills(valign="top")
@@ -141,4 +141,8 @@ block content
             p.
                 You must be logged in to use this page.
             br
-            a.login-link(href="/") Login
+            a.login-link(id="login-link") Login
+        script.
+            $('#login-link').click(function() {
+                window.location = '/?callbackURL=' + document.URL;
+            });

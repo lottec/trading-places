@@ -515,4 +515,9 @@ input[type=submit] {
 a.login-link {
   color: #000000;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.team-members-container tr.target {
+  background: #D3DAED;
 }
