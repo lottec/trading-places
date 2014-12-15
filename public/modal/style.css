@@ -31,7 +31,7 @@
 }
 
 #boxes #dialog input.cancel-button {
-    background: #AD3737;
+    background: #B54848;
     border: 0 none;
     border-radius: 3px;
     color: #ffffff;
@@ -55,7 +55,7 @@
 
 
 #boxes #dialog input.confirm-button {
-    background: #597689;
+    background: #43647C;
     border: 0 none;
     border-radius: 3px;
     color: #ffffff;

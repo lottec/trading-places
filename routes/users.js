@@ -33,7 +33,7 @@ var loginPost = function(req, res) {
 
           if (!invalid) {
 
-            res.redirect(callbackURLParam);
+            res.redirect(callbackURLParam?callbackURLParam:'/mypeople');
 
           } else {
 

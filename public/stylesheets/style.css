@@ -4,7 +4,7 @@ html,body {
 }
 
 body {
-  font-family: Verdana, "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'OpenSansRegular', "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -12,18 +12,36 @@ a {
   text-decoration: none;
 }
 
+input {
+  font-family: 'OpenSansRegular', "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 /* Fonts */
 
 @font-face {
-  font-family: 'CodeProRegular';
-  src: url('/fonts/code_pro_demo-webfont.eot');
-  src: url('/fonts/code_pro_demo-webfont.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/code_pro_demo-webfont.woff2') format('woff2'),
-  url('/fonts/code_pro_demo-webfont.woff') format('woff'),
-  url('/fonts/code_pro_demo-webfont.ttf') format('truetype'),
-  url('/fonts/code_pro_demo-webfont.svg#code_pro_demoregular') format('svg');
-  font-weight: normal;
+  font-family:'OpenSansRegular';
+  src: url('/fonts/OpenSans_Regular.eot');
+  src: url('/fonts/OpenSans_Regular.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/OpenSans_Regular.woff') format('woff'),
+  url('/fonts/OpenSans_Regular.ttf') format('truetype'),
+  url('/fonts/OpenSans_Regular.svg#OpenSans-Regular') format('svg');
+  font-weight: 400;
   font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-25CA;
+}
+
+@font-face {
+  font-family:'OpenSansLight';
+  src: url('/fonts/OpenSans_Light.eot');
+  src: url('/fonts/OpenSans_Light.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/OpenSans_Light.woff') format('woff'),
+  url('/fonts/OpenSans_Light.ttf') format('truetype'),
+  url('/fonts/OpenSans_Light.svg#OpenSans-Regular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-25CA;
 }
 
 @font-face {
@@ -69,13 +87,13 @@ input[type=submit] {
 .navigation-container {
   top: 0;
   left: 0;
-  min-width: 100%;
+  width: 900px;
+  margin: 0 auto;
   min-height: 50px;
   background: white;
   color: #000000;
   z-index: 1000;
-  padding: 10px;
-  box-shadow: 0 0 5px #ededed;
+  padding: 0px 0px;
 }
 
 .navigation-container .header-logo {
@@ -85,12 +103,12 @@ input[type=submit] {
   line-height:50px;
   vertical-align: top;
   margin-right: 80px;
-  margin-left: 20px;
+  margin-left: 00px;
 }
 
 .navigation-container .header-logo img {
   margin-top: 14px;
-  width: 180px;
+  width: 220px;
 }
 
 .navigation-container .navigation-items {
@@ -117,21 +135,63 @@ input[type=submit] {
 }
 
 .navigation-container .right-container {
+  margin-top: 15px;
   display: inline-block;
   float: right;
   text-align: center;
 }
 
+.navigation-container .right-container .item {
+  display: inline-block;
+  background: #43647C;
+  color: #ffffff;
+  padding: 7px 15px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.navigation-container .right-container .item-user {
+  display: inline-block;
+  background: #efefef;
+  border: 1px solid #ababab;
+  color: #000000;
+  padding: 7px 15px;
+  margin-left: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.add-team-member-button {
+  display: inline-block;
+  background: #43647C;
+  color: #ffffff;
+  padding: 7px 15px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.first-item {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+
 .navigation-container .right-container span.logout-text {
   color: #000000;
-  font-family: 'Verdana',sans-serif;
   font-size: 13px;
   line-height: 50px;
-  margin-right: 20px;
+  margin-left: 10px;
 }
 
 .navigation-container .right-container span.logout-text a.logout {
-  background: #4c748d;
+  background: #B54848;
   padding: 7px 9px;
   border-radius: 3px;
   color: #ffffff;
@@ -142,7 +202,6 @@ input[type=submit] {
 
 .navigation-container .navigation-item a.navigation-item-text {
   color: #000000;
-  font-family: 'Verdana',sans-serif;
   font-size: 13px;
   text-decoration: none;
   padding: 6px 10px;
@@ -172,7 +231,6 @@ input[type=submit] {
 
 .navigation-container .navigation-items .navigation-item-badge span {
   color: #ffffff;
-  font-family: 'HelveticaNeue', sans-serif;
   font-size: 15px;
 }
 
@@ -188,7 +246,6 @@ input[type=submit] {
 .navigation-container .navigation-bottom-bar span {
   color: #ffffff;
   font-size: 13px;
-  font-family: 'HelveticaNeue-Bold', sans-serif;
   line-height: 40px;
 }
 
@@ -197,7 +254,7 @@ input[type=submit] {
   background: #e8e8e8;
   border-radius: 5px;
   margin: 0 auto;
-  width: 250px;
+  width: 300px;
   padding: 0;
   overflow: hidden;
 }
@@ -210,7 +267,7 @@ input[type=submit] {
 }
 
 .login-container input[type=text],input[type=password] {
-  width: 190px;
+  width: 240px;
   height: 20px;
   margin: 0 auto;
   margin-bottom: 10px;
@@ -227,7 +284,7 @@ input[type=submit] {
 }
 
 .login-container .button-container {
-  background: #686866;
+  background: #43647C;
   text-align: center;
   padding: 5px;
   margin-top: 8px;
@@ -235,7 +292,7 @@ input[type=submit] {
 
 .login-container .button-container input[type=submit] {
   background: transparent;
-  color: #f5c85a;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   width: 100%;
@@ -273,7 +330,7 @@ input[type=submit] {
   background: #e8e8e8;
   border-radius: 5px;
   margin: 0 auto;
-  width: 250px;
+  width: 300px;
   padding: 0;
   overflow: hidden;
   font-size: 10px;
@@ -293,7 +350,7 @@ input[type=submit] {
 }
 
 .register-container input[type=text],input[type=password],input[type=email],input[type=number] {
-  width: 190px !important;
+  width: 240px !important;
   height: 20px !important;
   margin: 0 auto;
   margin-bottom: 10px;
@@ -310,7 +367,7 @@ input[type=submit] {
 }
 
 .register-container .button-container {
-  background: #686866;
+  background: #43647C;
   text-align: center;
   padding: 5px;
   margin-top: 8px;
@@ -318,7 +375,7 @@ input[type=submit] {
 
 .register-container .button-container input[type=submit] {
   background: transparent;
-  color: #f5c85a;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   width: 100%;
@@ -332,6 +389,7 @@ input[type=submit] {
   border-radius: 5px;
   margin: 0 auto;
   margin-top: 30px;
+  margin-bottom: 20px;
   width: 350px;
   padding: 0;
   overflow: hidden;
@@ -370,7 +428,7 @@ input[type=submit] {
 }
 
 .add-person-container .button-container {
-  background: #686866;
+  background: #43647C;
   text-align: center;
   padding: 5px;
   margin-top: 8px;
@@ -378,7 +436,7 @@ input[type=submit] {
 
 .add-person-container .button-container input[type=submit] {
   background: transparent;
-  color: #f5c85a;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   width: 100%;
@@ -392,10 +450,9 @@ input[type=submit] {
 
 
 .team-members-container {
-  background: #e8e8e8;
   border-radius: 5px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 0px;
   display: inline-block;
   padding: 0;
   overflow: hidden;
@@ -415,7 +472,12 @@ input[type=submit] {
 }
 
 .team-members-container table {
-  min-width: 700px;
+  min-width: 900px;
+  max-width: 900px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  overflow: hidden;
 }
 
 .team-members-container table tr td {
@@ -425,9 +487,40 @@ input[type=submit] {
 }
 
 .team-members-container table tr td.header {
-  background: #676767;
+  background: #43647C;
   color: #ffffff;
   padding: 9px 15px;
+  text-transform: uppercase;
+}
+
+
+.team-members-container table tr:last-child td:first-child {
+  -moz-border-radius-bottomleft:7px;
+  -webkit-border-bottom-left-radius:7px;
+  border-bottom-left-radius:7px
+}
+
+.team-members-container table tr:last-child td:last-child {
+  -moz-border-radius-bottomright:7px;
+  -webkit-border-bottom-right-radius:7px;
+  border-bottom-right-radius:7px
+}
+
+.team-members-container table tr:first-child td:first-child {
+  -moz-border-radius-topleft:7px;
+  -webkit-border-top-left-radius:7px;
+  border-top-left-radius:7px
+}
+
+.team-members-container table tr:first-child td:last-child {
+  -moz-border-radius-topright:7px;
+  -webkit-border-top-right-radius:7px;
+  border-top-right-radius:7px
+}
+
+
+.team-members-container .member-row td {
+  background: #e8e8e8;
 }
 
 .team-members-container .skills {
@@ -446,7 +539,7 @@ input[type=submit] {
 }
 
 .team-members-container .skill-content {
-  padding: 5px 0;
+  padding: 5px 0px 5px 5px;
 }
 
 .success-box {
@@ -480,18 +573,6 @@ input[type=submit] {
   width: 250px;
 }
 
-.add-team-member-button {
-  display: inline-block;
-  background: #fff;
-  padding: 15px 10px;
-  border-radius: 4px;
-  box-shadow: 0px 0px 5px #ededed;
-  margin-top: 20px;
-  color: #000;
-  font-size: 12px;
-  cursor: pointer;
-}
-
 .available-icon {
   display: inline-block;
   width: 16px;
@@ -506,10 +587,22 @@ input[type=submit] {
 
 .request-link {
   padding: 5px 8px;
-  background: linear-gradient(to bottom, #f7ce74 0%,#f5c356 100%);
-  color: #ffffff;
+  background: #D3E4F7;
+  border: 1px solid #99B3D5;
+  color: #6583AB;
   border-radius: 4px;
   text-decoration: none;
+}
+
+.request-link:hover {
+  background: #BACBDE;
+  color: #536B8C;
+}
+
+.request-link:active {
+  background: #445873;
+  border: 1px solid #445873;
+  color: #ffffff;
 }
 
 a.login-link {
@@ -520,4 +613,13 @@ a.login-link {
 
 .team-members-container tr.target {
   background: #D3DAED;
+}
+
+.dropdown-item {
+  color: #000000;
+  font-size: 11px;
+}
+
+.dropdown-item a {
+  color: #000000;
 }

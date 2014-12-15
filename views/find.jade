@@ -6,7 +6,7 @@ block content
         if success == 'false'
             div(class="error-box") Error
         div.team-members-container
-            table(cellspacing="0")
+            table(cellspacing="1")
                 tr
                     td.header
                         span Skills &amp; Ability Levels
@@ -20,20 +20,25 @@ block content
                     td(colspan="4") There are currently no people available
                 else
                     each member in team_members
-                        tr
+                        tr.member-row
                             td.skills(valign="top")
-                                div.skill-header Expert
-                                div.skill-content
-                                    span.
-                                        #{member.data.expert}
-                                div.skill-header Intermediate
-                                div.skill-content
-                                    span.
-                                        #{member.data.intermediate}
-                                div.skill-header Basic
-                                div.skill-content
-                                    span.
-                                        #{member.data.basic}
+                                if !member.data.expert && !member.data.intermediate && !member.data.basic
+                                    span No skills added
+                                if member.data.expert
+                                    div.skill-header Expert
+                                    div.skill-content
+                                        span.
+                                            #{member.data.expert}
+                                if member.data.intermediate
+                                    div.skill-header Intermediate
+                                    div.skill-content
+                                        span.
+                                            #{member.data.intermediate}
+                                if member.data.basic
+                                    div.skill-header Basic
+                                    div.skill-content
+                                        span.
+                                            #{member.data.basic}
                             td(valign="top")
                                 span #{member.data.job_title}
                             td(valign="top")

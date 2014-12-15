@@ -1,7 +1,6 @@
 extends layout
 block content
     if session.user
-        div.add-team-member-button + Add Team Member
         div.add-person-container
             p.header Add Team Member
             form(name="add", id="add", action="/mypeople/add_team_member", method="post")
@@ -56,7 +55,7 @@ block content
                         input(type="submit", value="Add Team Member")
         div
             div.team-members-container
-                table(cellspacing="0")
+                table(cellspacing="1")
                     tr
                         td.header
                             span Name
@@ -72,22 +71,27 @@ block content
                         td(colspan="5") You haven't added any team members
                     else
                         each member in team_members
-                            tr(id="#{member.data.key}", class=(team_member_id === member.data.key)?'target':'')
+                            tr(id="#{member.data.key}", class=(team_member_id === member.data.key)?'member-row target':'member-row')
                                 td(valign="top")
                                     span #{member.data.surname}, #{member.data.first_name}
                                 td.skills(valign="top")
-                                    div.skill-header Expert
-                                    div.skill-content
-                                        span.
-                                            #{member.data.expert}
-                                    div.skill-header Intermediate
-                                    div.skill-content
-                                        span.
-                                            #{member.data.intermediate}
-                                    div.skill-header Basic
-                                    div.skill-content
-                                        span.
-                                            #{member.data.basic}
+                                    if !member.data.expert && !member.data.intermediate && !member.data.basic
+                                        span No skills added
+                                    if member.data.expert
+                                        div.skill-header Expert
+                                        div.skill-content
+                                            span.
+                                                #{member.data.expert}
+                                    if member.data.intermediate
+                                        div.skill-header Intermediate
+                                        div.skill-content
+                                            span.
+                                                #{member.data.intermediate}
+                                    if member.data.basic
+                                        div.skill-header Basic
+                                        div.skill-content
+                                            span.
+                                                #{member.data.basic}
                                 td(valign="top")
                                     span #{member.data.job_title}
                                 td(valign="top")

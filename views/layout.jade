@@ -6,28 +6,47 @@ html
     link(rel='stylesheet', href='/stylesheets/jquery-ui.css')
     link(rel='stylesheet', href='/taggingJS/example/tag-basic-style.css')
     link(rel='stylesheet', href='/modal/style.css')
+    link(rel='stylesheet', href='/dropdown/jquery.dropdown.css')
     script(src='/javascript/jquery-1.11.1.min.js')
     script(src='/taggingJS/tagging.min.js')
     script(src='/modal/modal.js')
+    script(src='/dropdown/jquery.dropdown.js')
+    script(src='/javascript/jquery-validation/dist/jquery.validate.js')
 body
   if session.user
+    div(id="dropdown-1", class="dropdown dropdown-tip dropdown-anchor-right")
+      div.dropdown-panel
+        div.dropdown-item
+          a(href='/users/logout') Logout
     div(class='navigation-container')
       div(class='header-logo')
         a(href='/')
           img(src='images/tradingplaces.png')
-      div(class='navigation-item')
-        if route == 'mypeople'
-          a(class='navigation-item-text selected', href='/mypeople') My People
-        else
-          a(class='navigation-item-text', href='/mypeople') My People
-      div(class='navigation-item')
-        if route == 'find'
-          a(class='navigation-item-text selected', href='/find') Find
-        else
-          a(class='navigation-item-text', href='/find') Find
       div(class='right-container')
-        span(class='logout-text') #{session.user.username}&nbsp;
-          a(href='/users/logout', class='logout') Logout
+        if route == 'mypeople'
+          a(href="/mypeople")
+            div.item.first-item
+              span My People
+        else
+          a(href="/mypeople")
+            div.item.first-item
+              span My People
+        if route == 'find'
+          a(href="/find")
+            div.item
+              span Find
+        else
+          a(href="/find")
+            div.item
+              span Find
+        if route == 'mypeople'
+          div.add-team-member-button
+            span +
+        a(href="#", data-dropdown="#dropdown-1", data-vertical-offset="8")
+          div.item-user #{session.user.username}
+
+
+
   div(class='content-wrapper')
     block content
   script(type="text/javascript", src="/javascript/retina.min.js")
