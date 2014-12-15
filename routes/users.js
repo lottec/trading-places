@@ -23,7 +23,7 @@ var loginPost = function(req, res) {
             if (hash) {
               if (bcrypt.compareSync(password, hash)) {
                 invalid = false;
-                req.session.user = {username: username};
+                req.session.user = {username: username, full_name: result.body.data.first_name + ' ' + result.body.data.surname};
               }
             }
           } catch(error) {
@@ -32,7 +32,7 @@ var loginPost = function(req, res) {
           var callbackURLParam = req.body.callbackURL;
 
           if (!invalid) {
-
+            console.log(callbackURLParam);
             res.redirect(callbackURLParam?callbackURLParam:'/mypeople');
 
           } else {

@@ -547,7 +547,7 @@ input[type=submit] {
   color: #ffffff;
   border-radius: 3px;
   padding: 5px 10px;
-  margin-top: 20px;
+  margin: 20px 0px;
   min-width: 50px;
   display: inline-block;
 }
@@ -557,7 +557,7 @@ input[type=submit] {
   color: #ffffff;
   border-radius: 3px;
   padding: 5px 10px;
-  margin-top: 20px;
+  margin: 20px 0px;
   min-width: 50px;
   display: inline-block;
 }
