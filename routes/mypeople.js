@@ -5,7 +5,7 @@ var request = require('superagent');
 var host = 'http://db.cistechfutures.net';
 var port = 8098;
 var validator = require('validator');
-var eventProcessor = requireFrom('exports', module, '../event_processing/event_processor.js');
+var eventProcessor = requireFrom('exports', module, '../event_processing/event_router.js');
 
 
 router.get('/', function(req,res) {

@@ -1,5 +1,5 @@
 var requireFrom = require('require-from');
-var eventProcessor = requireFrom('exports', module, '../event_processing/event_processor.js');
+var eventProcessor = requireFrom('exports', module, '../event_processing/event_router.js');
 var express = require('express');
 var bcrypt = require('bcrypt');
 var validator = require('validator');
