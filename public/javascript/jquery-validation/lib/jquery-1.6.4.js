@@ -436,7 +436,7 @@ jQuery.extend({
 			// If there are functions bound, to execute
 			readyList.resolveWith( document, [ jQuery ] );
 
-			// Trigger any bound ready events
+			// Trigger any bound ready event_processing
 			if ( jQuery.fn.trigger ) {
 				jQuery( document ).trigger( "ready" ).unbind( "ready" );
 			}
@@ -1517,7 +1517,7 @@ jQuery.extend({
 		}
 
 		// TODO: This is a hack for 1.5 ONLY. It will be removed in 1.6. Users should
-		// not attempt to inspect the internal events object using jQuery.data, as this
+		// not attempt to inspect the internal event_processing object using jQuery.data, as this
 		// internal data object is undocumented and subject to change.
 		if ( name === "events" && !thisCache[name] ) {
 			return thisCache[ internalKey ] && thisCache[ internalKey ].events;
@@ -2579,7 +2579,7 @@ var rnamespaces = /\.(.*)$/,
 	};
 
 /*
- * A number of helper functions used for managing events.
+ * A number of helper functions used for managing event_processing.
  * Many of the ideas behind this code originated from
  * Dean Edwards' addEvent library.
  */
@@ -2638,10 +2638,10 @@ jQuery.event = {
 		}
 
 		// Add elem as a property of the handle function
-		// This is to prevent a memory leak with non-native events in IE.
+		// This is to prevent a memory leak with non-native event_processing in IE.
 		eventHandle.elem = elem;
 
-		// Handle multiple events separated by a space
+		// Handle multiple event_processing separated by a space
 		// jQuery(...).bind("mouseover mouseout", fn);
 		types = types.split(" ");
 
@@ -2678,7 +2678,7 @@ jQuery.event = {
 
 				// Check for a special event handler
 				// Only use addEventListener/attachEvent if the special
-				// events handler returns false
+				// event_processing handler returns false
 				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 					// Bind the global event handler to the element
 					if ( elem.addEventListener ) {
@@ -2701,7 +2701,7 @@ jQuery.event = {
 			// Add the function to the element's handler list
 			handlers.push( handleObj );
 
-			// Keep track of which events have been used, for event optimization
+			// Keep track of which event_processing have been used, for event optimization
 			jQuery.event.global[ type ] = true;
 		}
 
@@ -2711,9 +2711,9 @@ jQuery.event = {
 
 	global: {},
 
-	// Detach an event or set of events from an element
+	// Detach an event or set of event_processing from an element
 	remove: function( elem, types, handler, pos ) {
-		// don't do events on text and comment nodes
+		// don't do event_processing on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
 			return;
 		}
@@ -2736,7 +2736,7 @@ jQuery.event = {
 			types = types.type;
 		}
 
-		// Unbind all events for the element
+		// Unbind all event_processing for the element
 		if ( !types || typeof types === "string" && types.charAt(0) === "." ) {
 			types = types || "";
 
@@ -2747,7 +2747,7 @@ jQuery.event = {
 			return;
 		}
 
-		// Handle multiple events separated by a space
+		// Handle multiple event_processing separated by a space
 		// jQuery(...).unbind("mouseover mouseout", fn);
 		types = types.split(" ");
 
@@ -2836,7 +2836,7 @@ jQuery.event = {
 	},
 
 	// Events that are safe to short-circuit if no handlers are attached.
-	// Native DOM events should not be added, they may have inline handlers.
+	// Native DOM event_processing should not be added, they may have inline handlers.
 	customEvent: {
 		"getData": true,
 		"setData": true,
@@ -2850,7 +2850,7 @@ jQuery.event = {
 			exclusive;
 
 		if ( type.indexOf("!") >= 0 ) {
-			// Exclusive events trigger only for the exact event (no namespaces)
+			// Exclusive event_processing trigger only for the exact event (no namespaces)
 			type = type.slice(0, -1);
 			exclusive = true;
 		}
@@ -2881,7 +2881,7 @@ jQuery.event = {
 		event.namespace = namespaces.join(".");
 		event.namespace_re = new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.)?") + "(\\.|$)");
 
-		// triggerHandler() and global events don't bubble or run the default action
+		// triggerHandler() and global event_processing don't bubble or run the default action
 		if ( onlyHandlers || !elem ) {
 			event.preventDefault();
 			event.stopPropagation();
@@ -2889,7 +2889,7 @@ jQuery.event = {
 
 		// Handle a global trigger
 		if ( !elem ) {
-			// TODO: Stop taunting the data cache; remove global events and always attach to document
+			// TODO: Stop taunting the data cache; remove global event_processing and always attach to document
 			jQuery.each( jQuery.cache, function() {
 				// internalKey variable is just used to make it easier to find
 				// and potentially change this stuff later; currently it just
@@ -2903,7 +2903,7 @@ jQuery.event = {
 			return;
 		}
 
-		// Don't do events on text and comment nodes
+		// Don't do event_processing on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
 			return;
 		}
@@ -2977,7 +2977,7 @@ jQuery.event = {
 
 	handle: function( event ) {
 		event = jQuery.event.fix( event || window.event );
-		// Snapshot the handlers list since a called handler may add/remove events.
+		// Snapshot the handlers list since a called handler may add/remove event_processing.
 		var handlers = ((jQuery._data( this, "events" ) || {})[ event.type ] || []).slice(0),
 			run_all = !event.exclusive && !event.namespace,
 			args = Array.prototype.slice.call( arguments, 0 );
@@ -3059,7 +3059,7 @@ jQuery.event = {
 			event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
 		}
 
-		// Add which for key events
+		// Add which for key event_processing
 		if ( event.which == null && (event.charCode != null || event.keyCode != null) ) {
 			event.which = event.charCode != null ? event.charCode : event.keyCode;
 		}
@@ -3158,7 +3158,7 @@ jQuery.Event = function( src, props ) {
 		jQuery.extend( this, props );
 	}
 
-	// timeStamp is buggy for some events on Firefox(#3843)
+	// timeStamp is buggy for some event_processing on Firefox(#3843)
 	// So we won't rely on the native value
 	this.timeStamp = jQuery.now();
 
@@ -3249,7 +3249,7 @@ delegate = function( event ) {
 	jQuery.event.handle.apply( this, arguments );
 };
 
-// Create mouseenter and mouseleave events
+// Create mouseenter and mouseleave event_processing
 jQuery.each({
 	mouseenter: "mouseover",
 	mouseleave: "mouseout"
@@ -3428,7 +3428,7 @@ function trigger( type, elem, args ) {
 	}
 }
 
-// Create "bubbling" focus and blur events
+// Create "bubbling" focus and blur event_processing
 if ( !jQuery.support.focusinBubbles ) {
 	jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
@@ -3694,7 +3694,7 @@ function liveHandler( event ) {
 				elem = close.elem;
 				related = null;
 
-				// Those two events require additional checking
+				// Those two event_processing require additional checking
 				if ( handleObj.preType === "mouseenter" || handleObj.preType === "mouseleave" ) {
 					event.type = handleObj.preType;
 					related = jQuery( event.relatedTarget ).closest( handleObj.selector )[0];
@@ -5915,13 +5915,13 @@ function cloneFixAttributes( src, dest ) {
 	}
 
 	// clearAttributes removes the attributes, which we don't want,
-	// but also removes the attachEvent events, which we *do* want
+	// but also removes the attachEvent event_processing, which we *do* want
 	if ( dest.clearAttributes ) {
 		dest.clearAttributes();
 	}
 
 	// mergeAttributes, in contrast, only merges back on the
-	// original attributes, not the events
+	// original attributes, not the event_processing
 	if ( dest.mergeAttributes ) {
 		dest.mergeAttributes( src );
 	}
@@ -6074,10 +6074,10 @@ jQuery.extend({
 
 		if ( (!jQuery.support.noCloneEvent || !jQuery.support.noCloneChecked) &&
 				(elem.nodeType === 1 || elem.nodeType === 11) && !jQuery.isXMLDoc(elem) ) {
-			// IE copies events bound via attachEvent when using cloneNode.
-			// Calling detachEvent on the clone will also remove the events
+			// IE copies event_processing bound via attachEvent when using cloneNode.
+			// Calling detachEvent on the clone will also remove the event_processing
 			// from the original. In order to get around this, we use some
-			// proprietary methods to clear the events. Thanks to MooTools
+			// proprietary methods to clear the event_processing. Thanks to MooTools
 			// guys for this hotness.
 
 			cloneFixAttributes( elem, clone );
@@ -6098,7 +6098,7 @@ jQuery.extend({
 			}
 		}
 
-		// Copy the events from the original to the clone
+		// Copy the event_processing from the original to the clone
 		if ( dataAndEvents ) {
 			cloneCopyEvent( elem, clone );
 
@@ -6935,7 +6935,7 @@ jQuery.fn.extend({
 	}
 });
 
-// Attach a bunch of functions for handling common AJAX events
+// Attach a bunch of functions for handling common AJAX event_processing
 jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split( " " ), function( i, o ){
 	jQuery.fn[ o ] = function( f ){
 		return this.bind( o, f );
@@ -7072,7 +7072,7 @@ jQuery.extend({
 			s = jQuery.ajaxSetup( {}, options ),
 			// Callbacks context
 			callbackContext = s.context || s,
-			// Context for global events
+			// Context for global event_processing
 			// It's the callbackContext if one was provided in the options
 			// and if it's a DOM node or a jQuery collection
 			globalEventContext = callbackContext !== s &&
@@ -7099,7 +7099,7 @@ jQuery.extend({
 			parts,
 			// The jqXHR state
 			state = 0,
-			// To know if global events are to be dispatched
+			// To know if global event_processing are to be dispatched
 			fireGlobals,
 			// Loop variable
 			i,
@@ -7323,7 +7323,7 @@ jQuery.extend({
 			return false;
 		}
 
-		// We can fire global events as of now if asked to
+		// We can fire global event_processing as of now if asked to
 		fireGlobals = s.global;
 
 		// Uppercase the type

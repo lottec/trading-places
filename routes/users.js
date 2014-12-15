@@ -1,3 +1,5 @@
+var requireFrom = require('require-from');
+var eventProcessor = requireFrom('exports', module, '../event_processing/event_processor.js');
 var express = require('express');
 var bcrypt = require('bcrypt');
 var validator = require('validator');
@@ -101,11 +103,9 @@ var loginPost = function(req, res) {
             if (invalid) {
               res.redirect('/register/?user_exists=true');
             } else {
-              request.post(host + ":" + port + "/riak/mt-register/" + username)
-                  .set('Content-Type', 'application/json')
-                  .send({
-                    "event": "registration",
-                    "timestamp": Date.now(),
+              eventProcessor.sendEvent(
+                  {
+                    "event": "mt-register",
                     "data": {
                       "username": username,
                       "password": hash,
@@ -115,10 +115,29 @@ var loginPost = function(req, res) {
                       "num_team_members": req.body.num_team_members,
                       "department": req.body.department
                     }
-                  })
-                  .end(function () {
+                  },
+                  function() {
                     res.redirect('/');
-                  });
+                  }
+              );
+              //request.post(host + ":" + port + "/riak/mt-register/" + username)
+              //    .set('Content-Type', 'application/json')
+              //    .send({
+              //      "event": "registration",
+              //      "timestamp": Date.now(),
+              //      "data": {
+              //        "username": username,
+              //        "password": hash,
+              //        "email": req.body.email,
+              //        "first_name": req.body.first_name,
+              //        "surname": req.body.surname,
+              //        "num_team_members": req.body.num_team_members,
+              //        "department": req.body.department
+              //      }
+              //    })
+              //    .end(function () {
+              //      res.redirect('/');
+              //    });
             }
           });
     }

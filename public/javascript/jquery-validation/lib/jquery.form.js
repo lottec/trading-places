@@ -358,7 +358,7 @@ $.fn.ajaxSubmit = function(options) {
         };
 
         g = s.global;
-        // trigger ajax global events so that activity/block indicators work like normal
+        // trigger ajax global event_processing so that activity/block indicators work like normal
         if (g && 0 === $.active++) {
             $.event.trigger("ajaxStart");
         }
@@ -718,7 +718,7 @@ $.fn.ajaxSubmit = function(options) {
  * 3. This method binds the submit() method to the form for you.
  *
  * The options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely
- * passes the options argument along after properly binding events for submit elements and
+ * passes the options argument along after properly binding event_processing for submit elements and
  * the form itself.
  */
 $.fn.ajaxForm = function(options) {
