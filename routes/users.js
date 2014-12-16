@@ -27,12 +27,12 @@ var loginPost = function(req, res) {
               }
             }
           } catch(error) {
-            invalid = false;
+              invalid = true;
           }
           var callbackURLParam = req.body.callbackURL;
 
           if (!invalid) {
-            console.log(callbackURLParam);
+
             res.redirect(callbackURLParam?callbackURLParam:'/mypeople');
 
           } else {

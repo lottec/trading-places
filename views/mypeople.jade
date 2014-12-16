@@ -71,10 +71,10 @@ block content
                         td(colspan="5") You haven't added any team members
                     else
                         each member in team_members
-                            tr(id="#{member.data.key}", class=(team_member_id === member.data.key)?'member-row target':'member-row')
-                                td(valign="top")
+                            tr(id="#{member.data.key}", class='member-row')
+                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     span #{member.data.surname}, #{member.data.first_name}
-                                td.skills(valign="top")
+                                td.skills(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     if !member.data.expert && !member.data.intermediate && !member.data.basic
                                         span No skills added
                                     if member.data.expert
@@ -92,12 +92,12 @@ block content
                                         div.skill-content
                                             span.
                                                 #{member.data.basic}
-                                td(valign="top")
+                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     span #{member.data.job_title}
-                                td(valign="top")
+                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     if (member.data.availability == true)
                                         div.available-icon
-                                td(valign="top")
+                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
 
         script.

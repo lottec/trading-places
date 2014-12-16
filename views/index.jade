@@ -14,7 +14,7 @@ block content
       img(src='/images/tradingplaces.png')
     div.login-container
       p.header Sign in
-      form(name="login", action="/users/login", method="post")
+      form(name="login", id="login", action="/users/login", method="post")
         div.fields-container
           if callbackURL
             input(type="hidden", name="callbackURL", id="callbackURL", value="#{callbackURL}")
@@ -25,3 +25,10 @@ block content
     div.new-user-container
       p New user?&nbsp;
         a(href='/register') Sign-up
+    script.
+      $('#login').on('keydown', 'input', function (event) {
+        if (event.which == 13) {
+          $(this).next('input').focus();
+          event.preventDefault();
+        }
+      });

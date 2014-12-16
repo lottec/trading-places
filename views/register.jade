@@ -30,8 +30,18 @@ block content
       div.button-container
         div
           input(type="submit", value="register")
+  div.new-user-container
+    p Already registered?&nbsp;
+      a(href='/') Sign-in
 
    script.
+     $('#register').on('keydown', 'input', function (event) {
+       if (event.which == 13) {
+         $(this).next('input').focus();
+         event.preventDefault();
+       }
+     });
+
      $("#register").validate({
        rules: {
          password: 'required',

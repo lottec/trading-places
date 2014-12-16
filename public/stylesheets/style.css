@@ -616,8 +616,8 @@ a.login-link {
   cursor: pointer;
 }
 
-.team-members-container tr.target {
-  background: #D3DAED;
+.team-members-container td.target {
+  background: #FAFAD7;
 }
 
 .dropdown-item {
