@@ -95,7 +95,7 @@ block content
                                 td(valign="top")
                                     span #{member.data.job_title}
                                 td(valign="top")
-                                    if member.data.availability === "true"
+                                    if (member.data.availability == true)
                                         div.available-icon
                                 td(valign="top")
                                     span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
