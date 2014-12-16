@@ -91,11 +91,14 @@ block content
                 var team_member = $("#boxes #dialog #team_member_id").val();
                 var name = '#{session.user.full_name}';
                 var href = 'mailto:' + email +
-                            '?subject= Request' +
-                            '&from=#{session.user.email}' +
-                            '&bcc= test.tradingplaces@gmail.com' +
+                            '?subject= Trading Places Request' +
+                            '&cc= test.tradingplaces@gmail.com' +
                             '&body=' +
-                            'Hi ' + manager + '.%0D%0A%0D%0A' +
+                            '** This is an automatically generated email sent via the Sky Trading Places app. We\'d very much appreciate if you could keep the \
+                            keep us in the loop by using "Reply All" and keeping us cc\'d in - this is for analytics purposes so that we can improve the app as effectively as possible.  \
+                            Thanks! **\
+                            \
+                            Hi ' + manager + '.%0D%0A%0D%0A' +
                             'Hope you are well.%0D%0A%0D%0A' +
                             'I am wondering if it\'s possible to borrow your team member (http://' + location.hostname   + '/mypeople?team_member_id=' + team_member + ') for a bit to help solve a problem we have.%0D%0A%0D%0A' +
                             'Please let me know by replying to directly to this email.%0D%0A%0D%0A' +
