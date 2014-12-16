@@ -27,6 +27,8 @@ body
           a(href="/mypeople")
             div.item.first-item
               span My People
+          div.add-team-member-button
+            span +
         else
           a(href="/mypeople")
             div.item.first-item
@@ -39,9 +41,6 @@ body
           a(href="/find")
             div.item
               span Find
-        if route == 'mypeople'
-          div.add-team-member-button
-            span +
         a(href="#", data-dropdown="#dropdown-1", data-vertical-offset="8")
           div.item-user #{session.user.username}
 

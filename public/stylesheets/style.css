@@ -145,43 +145,48 @@ input[type=submit] {
   display: inline-block;
   background: #43647C;
   color: #ffffff;
-  padding: 7px 15px;
+  padding: 0px 15px;
   margin-left: 5px;
   text-transform: uppercase;
   font-size: 11px;
   cursor: pointer;
+  height: 30px;
+  line-height: 30px;
 }
 
 .navigation-container .right-container .item-user {
   display: inline-block;
-  background: #efefef;
-  border: 1px solid #ababab;
+  background: #e8e8e8;
   color: #000000;
-  padding: 7px 15px;
+  padding: 0px 15px;
   margin-left: 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   text-transform: uppercase;
   font-size: 11px;
   cursor: pointer;
+  height: 30px;
+  line-height: 30px;
 }
 
 .add-team-member-button {
   display: inline-block;
-  background: #43647C;
-  color: #ffffff;
-  padding: 7px 15px;
-  margin-left: 5px;
+  background: #e8e8e8;
+  color: #5280BA;
+  padding: 0px 15px;
+  margin-left: 0px;
   text-transform: uppercase;
   font-size: 11px;
+  font-weight: bold;
   cursor: pointer;
+  height: 30px;
+  line-height: 30px;
 }
 
 .first-item {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-
 
 .navigation-container .right-container span.logout-text {
   color: #000000;
