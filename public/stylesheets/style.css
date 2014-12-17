@@ -547,6 +547,22 @@ input[type=submit] {
   padding: 5px 0px 5px 5px;
 }
 
+.team-members-container .skill-content .tagging {
+  border: 0 none;
+  background: transparent;
+  box-shadow: 0 0 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.team-members-container .skill-content .tagging .tag-i {
+  display: none;
+}
+
+.team-members-container .skill-content .tagging .tag {
+  padding-right: 7px;
+}
+
 .success-box {
   background: #90C487;
   color: #ffffff;
@@ -628,3 +644,4 @@ a.login-link {
 .dropdown-item a {
   color: #000000;
 }
+

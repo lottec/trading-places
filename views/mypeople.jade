@@ -80,18 +80,41 @@ block content
                                     if member.data.expert
                                         div.skill-header Expert
                                         div.skill-content
-                                            span.
-                                                #{member.data.expert}
+                                            div(data-tags-input-name="expert_skills_list_#{member.data.key}", id="expertskillslist-#{member.data.key}")
+                                        script.
+                                            var expertSkillsList = '#{member.data.expert}';
+                                            var expertSkills = expertSkillsList.split(',');
+
+                                            $('#expertskillslist-#{member.data.key}').tagging();
+                                            $("#expertskillslist-#{member.data.key} .type-zone").css("display", "none");
+
+                                            expertSkills.map(function (skill) {
+                                                $('#expertskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
                                     if member.data.intermediate
                                         div.skill-header Intermediate
                                         div.skill-content
-                                            span.
-                                                #{member.data.intermediate}
+                                            div(data-tags-input-name="intermediate_skills_list_#{member.data.key}", id="intermediateskillslist-#{member.data.key}")
+                                        script.
+                                            var intermediateSkillsList = '#{member.data.intermediate}';
+                                            var intermediateSkills = intermediateSkillsList.split(',');
+                                            $('#intermediateskillslist-#{member.data.key}').tagging();
+                                            $("#intermediateskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            intermediateSkills.map(function (skill) {
+                                                $('#intermediateskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
                                     if member.data.basic
                                         div.skill-header Basic
                                         div.skill-content
-                                            span.
-                                                #{member.data.basic}
+                                            div(data-tags-input-name="basic_skills_list_#{member.data.key}", id="basicskillslist-#{member.data.key}")
+                                        script.
+                                            var basicSkillsList = '#{member.data.basic}';
+                                            var basicSkills = basicSkillsList.split(',');
+                                            $('#basicskillslist-#{member.data.key}').tagging();
+                                            $("#basicskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            basicSkills.map(function (skill) {
+                                                $('#basicskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
                                 td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     span #{member.data.job_title}
                                 //td(valign="top", class=(team_member_id === member.data.key)?'target':'')
