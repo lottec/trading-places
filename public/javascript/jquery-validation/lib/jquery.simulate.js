@@ -1,5 +1,5 @@
  /*!
- * jQuery Simulate v0.0.1 - simulate browser mouse and keyboard events
+ * jQuery Simulate v0.0.1 - simulate browser mouse and keyboard event_processing
  * https://github.com/jquery/jquery-simulate
  *
  * Copyright 2012 jQuery Foundation and other contributors
@@ -111,7 +111,7 @@ $.extend( $.simulate.prototype, {
 				options.ctrlKey, options.altKey, options.shiftKey, options.metaKey,
 				options.button, options.relatedTarget || document.body.parentNode );
 
-			// IE 9+ creates events with pageX and pageY set to 0.
+			// IE 9+ creates event_processing with pageX and pageY set to 0.
 			// Trying to modify the properties throws an error,
 			// so we define getters to return the correct values.
 			if ( event.pageX === 0 && event.pageY === 0 && Object.defineProperty ) {
@@ -243,15 +243,15 @@ $.extend( $.simulate.prototype, {
 		element.bind( "blur", trigger );
 		element[ 0 ].blur();
 
-		// blur events are async in IE
+		// blur event_processing are async in IE
 		setTimeout(function() {
 			// IE won't let the blur occur if the window is inactive
 			if ( element[ 0 ].ownerDocument.activeElement === element[ 0 ] ) {
 				element[ 0 ].ownerDocument.body.focus();
 			}
 
-			// Firefox won't trigger events if the window is inactive
-			// IE doesn't trigger events if we had to manually focus the body
+			// Firefox won't trigger event_processing if the window is inactive
+			// IE doesn't trigger event_processing if we had to manually focus the body
 			if ( !triggered ) {
 				focusoutEvent = $.Event( "focusout" );
 				focusoutEvent.preventDefault();
@@ -265,7 +265,7 @@ $.extend( $.simulate.prototype, {
 
 
 
-/** complex events **/
+/** complex event_processing **/
 
 function findCenter( elem ) {
 	var offset,

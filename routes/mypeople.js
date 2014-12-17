@@ -1,9 +1,12 @@
+var requireFrom = require('require-from');
 var express = require('express');
 var router = express.Router();
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net';
 var port = 8098;
 var validator = require('validator');
+var eventProcessor = requireFrom('exports', module, '../event_processing/event_router.js');
+
 
 router.get('/', function(req,res) {
     getTeamMembers(req, function(teamMembers) {
@@ -16,11 +19,9 @@ var addPost = function(req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
-        console.log(req.session.user.username);
         request
             .get(host + ":" + port + "/riak/mt-register/" + req.session.user.username)
             .end(function(result) {
-                console.log(result);
                 var manager_email = result.body.data.email;
                 var invalid = false;
 
@@ -32,12 +33,9 @@ var addPost = function(req, res) {
                 if (invalid) {
                     res.redirect('/mypeople?invalid=true');
                 } else {
-                    request.post(host + ":" + port + "/riak/mt-add-team-member/")
-                        .set('Content-Type', 'application/json')
-                        //.set('x-riak-index-manager_bin', 'testing')
-                        .send({
-                            "event": "add_team_member",
-                            "timestamp": Date.now(),
+                    eventProcessor.sendEvent(
+                        {
+                            "event": "mt-add-team-member",
                             "data": {
                                 "manager_email": manager_email,
                                 "first_name": req.body.first_name,
@@ -55,11 +53,11 @@ var addPost = function(req, res) {
                                 "manager": req.session.user.username,
                                 "manager_name": req.session.user.full_name
                             }
-                        })
-                        .end(function () {
-                            console.log('******' + req.session.user.full_name);
-                            res.redirect('/mypeople');
-                        });
+                        },
+                        function() {
+                                    res.redirect('/mypeople');
+                                }
+                    );
                 }
             });
     }
