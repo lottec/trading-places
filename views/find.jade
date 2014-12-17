@@ -45,66 +45,59 @@ block content
                                 span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
                             td(valign="top")
                                 div.request-link-container
-                                    a(href="#dialog", name="modal", class="request-link", onclick="resetWindows(); updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}');") Request
+                                    a(href="#dialog", name="modal", class="request-link", onclick="resetWindows(); updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}', '#{member.data.manager_name}');") Request
         div(id="boxes")
             div(id="dialog", class="window")
-                div(id="request-container")
-                    h1 Your request
-                    div(class="content") Continuing with this request will open your default email client with an email for you to complete and send this team member's manager.
-                    div(class="buttons-container")
-                        a(id="mail", name="mail")
-                        form(method="post", action="/request", id="confirm", name="confirm")
-                            input(type="hidden", name="team_member_id", id="team_member_id", value="")
-                            input(type="hidden", name="manager", id="manager", value="")
-                            input(type="hidden", name="manager_email", id="manager_email", value="")
-                            input(type="button", class="cancel-button close", value="Cancel")
-                            input(type="button", id="confirm-button", class="confirm-button", value="Continue", onclick="showConfirmWindow();")
                 div(id="confirm-container")
-                    h1 Confirm your request
-                    div(class="content") Please complete and send the email and press 'Confirm' after you have sent it.
-                    div(class="buttons-container")
-                        form(method="post", action="/request", id="send-request", name="send-request")
-                            input(type="hidden", name="team_member_id", id="team_member_id", value="")
-                            input(type="hidden", name="manager", id="manager", value="")
-                            input(type="button", class="cancel-button close", value="Cancel")
-                            input(type="submit", class="confirm-button", value="Confirm")
+                    h1 Your request
+                    form(method="post", action="/request", id="send-request", name="send-request")
+                        div(class="content")
+                            div.to_email
+                            div.subject
+                            div
+                                textarea(name="body", id="body")
+
+                        div(class="buttons-container")
+                                input(type="hidden", name="team_member_id", id="team_member_id", value="")
+                                input(type="hidden", name="from_email", id="from_email", value="")
+                                input(type="hidden", name="to_email", id="to_email", value="")
+                                input(type="hidden", name="subject", id="subject", value="")
+                                input(type="hidden", name="manager", id="manager", value="")
+                                input(type="hidden", name="manager_email", id="manager_email", value="")
+                                input(type="button", class="cancel-button close", value="Cancel")
+                                input(type="submit", class="confirm-button", value="Send")
             div(id="mask")
         script.
-            function updateModalFields(team_member, manager, manager_email) {
-                $("#boxes #dialog #team_member_id").val(team_member);
-                $("#boxes #dialog #manager").val(manager);
-                $("#boxes #dialog #manager_email").val(manager_email);
+            function updateModalFields(team_member, manager, manager_email, manager_name) {
                 $("#boxes #confirm-modal #team_member_id").val(team_member);
                 $("#boxes #confirm-modal #manager").val(manager);
+                $("#boxes #confirm-modal #manager_name").val(manager_name);
+                $("#send-request #to_email").val(manager_email);
+                $("#send-request #from_email").val('#{session.user.email}');
+                $("#send-request #subject").val('Trading Places Request');
+                $("#send-request .to_email").html('To: ' + manager_email);
+                $("#send-request .subject").html('Subject: ' + $("#send-request #subject").val());
+
+                var body = 'Hi ' + manager_name + ',\n\n' +
+                        'Hope you are well.\n\n' +
+                        'I am wondering if it\'s possible to borrow your team member (http://' + location.hostname   + '/mypeople?team_member_id=' + team_member + ') for a bit to help solve a problem we have.\n\n' +
+                        'Please let me know by replying to directly to this email.\n\n' +
+                        'Kind regards,\n' +
+                        '#{session.user.full_name}';
+
+                $("#send-request #body").val(body);
             }
             function showConfirmWindow() {
                 $("#request-container").hide();
                 $("#confirm-container").show();
             }
             function resetWindows() {
+                return;
                 $("#request-container").show();
                 $("#confirm-container").hide();
             }
+
             $('#confirm-button').click(function() {
-                var email = $("#boxes #dialog #manager_email").val();
-                var manager = $("#boxes #dialog #manager").val();
-                var team_member = $("#boxes #dialog #team_member_id").val();
-                var name = '#{session.user.full_name}';
-                var href = 'mailto:' + email +
-                            '?subject= Trading Places Request' +
-                            '&cc= test.tradingplaces@gmail.com' +
-                            '&body=' +
-                            '** This is an automatically generated email sent via the Sky Trading Places app. We\'d very much appreciate if you could keep the \
-                            keep us in the loop by using "Reply All" and keeping us cc\'d in - this is for analytics purposes so that we can improve the app as effectively as possible.  \
-                            Thanks! **\
-                            \
-                            Hi ' + manager + '.%0D%0A%0D%0A' +
-                            'Hope you are well.%0D%0A%0D%0A' +
-                            'I am wondering if it\'s possible to borrow your team member (http://' + location.hostname   + '/mypeople?team_member_id=' + team_member + ') for a bit to help solve a problem we have.%0D%0A%0D%0A' +
-                            'Please let me know by replying to directly to this email.%0D%0A%0D%0A' +
-                            'Kind regards,%0D%0A' +
-                            name;
-                window.location.href = href;
                 return false;
             });
 

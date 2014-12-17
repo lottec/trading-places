@@ -51,6 +51,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 12px;
+    text-align: left;
+    font-weight: bold;
 }
 
 
@@ -74,6 +76,20 @@
 
 }
 
-#confirm-container {
-    display: none;
+#body {
+    height: 350px;
+    width: 365px;
+    margin-top: 5px;
+    border: 0 none;
+    background: #ededed;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#confirm-container .to_email {
+    color: #323232;
+}
+
+#confirm-container .to_email,.subject {
+    margin-top: 5px;
 }

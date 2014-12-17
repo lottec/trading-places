@@ -17,7 +17,7 @@ block content
                         div(data-tags-input-name="intermediate_skills", id="intermediateskills")
                     div
                         div(data-tags-input-name="basic_skills", id="basicskills")
-                    div Available now?
+                    //div Available now?
                         input(type="checkbox", name="availability", id="availability")
                     div(id="availability-container", name="availability-container") Available for
                         br
@@ -63,12 +63,12 @@ block content
                             span Skills &amp; Ability Levels
                         td.header
                             span Job Description
-                        td.header
+                        //td.header
                             span Availability
                         td.header
                             span Duration of Availability
                     if !team_members.length
-                        td(colspan="5") You haven't added any team members
+                        td(colspan="4") You haven't added any team members
                     else
                         each member in team_members
                             tr(id="#{member.data.key}", class='member-row')
@@ -94,7 +94,7 @@ block content
                                                 #{member.data.basic}
                                 td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     span #{member.data.job_title}
-                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
+                                //td(valign="top", class=(team_member_id === member.data.key)?'target':'')
                                     if (member.data.availability == true)
                                         div.available-icon
                                 td(valign="top", class=(team_member_id === member.data.key)?'target':'')

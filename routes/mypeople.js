@@ -46,16 +46,18 @@ var addPost = function(req, res) {
                                 "expert": req.body['expert_skills[]'],
                                 "intermediate": req.body['intermediate_skills[]'],
                                 "basic": req.body['basic_skills[]'],
-                                "availability": req.body.availability?true:false,
+                                "availability": req.body.availability?true:true,
                                 "availability_duration": {
                                     "equality": req.body.equality,
                                     "number": req.body.num,
                                     "unit": req.body.unit
                                 },
-                                "manager": req.session.user.username
+                                "manager": req.session.user.username,
+                                "manager_name": req.session.user.full_name
                             }
                         })
                         .end(function () {
+                            console.log('******' + req.session.user.full_name);
                             res.redirect('/mypeople');
                         });
                 }

@@ -17,7 +17,8 @@
     "riakpbc": "*",
     "superagent": "*",
     "bcrypt": "*",
-    "validator": "*"
+    "validator": "*",
+    "nodemailer": "*"
   },
   "devDependencies": {
     "expect.js": "*",
