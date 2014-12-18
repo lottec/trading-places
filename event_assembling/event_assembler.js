@@ -11,30 +11,36 @@ var event = {"timestamp": 12345 ,
         "num_team_members": req.body.num_team_members,
         "department": req.body.department
     }
-}
+};
 
 var sendEvent = function(event, callback) {
     var eventJSON = {timestamp: Date.now(), data: event.data};
-    riakWrite.post(event.event, eventJSON, callback);
+    riakWrite.post(event.event, null, eventJSON, callback);
 };
 
 
-var eventToObject = function(type, data) {
+var eventToObjectDB = function(type, data) {
 
-    var typeSplit = type.split('-');
-    var bucket = typeSplit[0];
-    var action = typeSplit[1];
+    //Convention: bucket-key-action
+
+    var types = type.split('-');
+    var bucket = types[0];
+    var key = types[1];
+    var action = types[2];
 
     if (action == 'create'){
 
-        riakWrite.post(bucket, data);
+        riakWrite.post(bucket, key, data);
 
     } else if (action == 'update'){
 
-        riakWrite.put(bucket, data);
+        riakWrite.put(bucket, key, data);
 
     } else if (action == 'delete'){
 
-        riakWrite.del(bucket, data);
+        riakWrite.del(bucket, key, data);
     }
+
 };
+
+module.exports = {eventToObjectDB: eventToObjectDB}
