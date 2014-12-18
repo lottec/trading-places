@@ -3,7 +3,7 @@ var riakWrite = requireFrom('exports', module, '../riak_access/riak_write.js');
 
 var sendEvent = function(event, callback) {
     var eventJSON = {timestamp: Date.now(), data: event.data};
-    riakWrite.post(event.type, event.key, eventJSON, callback);
+    riakWrite.post(event.type, null, eventJSON, callback);
 };
 
 module.exports = {sendEvent: sendEvent};
