@@ -3,14 +3,14 @@ var host = 'http://db.cistechfutures.net';
 var port = 8098;
 
 var post = function(bucket, key, data, callback) {
-    request.post(host + ":" + port + "/riak/" + bucket + (key?'/key':''))
+    request.post(host + ":" + port + "/riak/" + bucket + (key?('/' + key):''))
         .set('Content-Type', 'application/json')
         .send(data)
         .end(callback());
 };
 
 var put = function(bucket, key, data, callback) {
-    request.put(host + ":" + port + "/riak/" + bucket + (key?'/key':''))
+    request.put(host + ":" + port + "/riak/" + bucket + (key?('/' + key):''))
         .set('Content-Type', 'application/json')
         .send(data)
         .end(callback());

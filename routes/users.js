@@ -119,7 +119,8 @@ var loginPost = function(req, res) {
             } else {
               eventProcessor.sendEvent(
                   {
-                    "event": "mt-register",
+                    "type": "mt-register",
+                    "key": username,
                     "data": {
                       "username": username,
                       "password": hash,
