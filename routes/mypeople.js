@@ -35,7 +35,7 @@ var addPost = function(req, res) {
                 } else {
                     eventProcessor.sendEvent(
                         {
-                            "event": "mt-add-team-member",
+                            "type": "mt-add-team-member",
                             "data": {
                                 "manager_email": manager_email,
                                 "first_name": req.body.first_name,
