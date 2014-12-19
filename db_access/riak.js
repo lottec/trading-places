@@ -6,21 +6,21 @@ var post = function(bucket, key, data, callback) {
     request.post(host + ":" + port + "/riak/" + bucket + (key?('/' + key):''))
         .set('Content-Type', 'application/json')
         .send(data)
-        .end(callback());
+        .end(callback);
 };
 
 var put = function(bucket, key, data, callback) {
     request.put(host + ":" + port + "/riak/" + bucket + (key?('/' + key):''))
         .set('Content-Type', 'application/json')
         .send(data)
-        .end(callback());
+        .end(callback);
 };
 
 var del = function(bucket, key, data, callback) {
     request.del(host + ":" + port + "/buckets/" + bucket + (key?('/' + key):''))
         .set('Content-Type', 'application/json')
         .send(data)
-        .end(callback());
+        .end(callback);
 };
 
 
@@ -29,7 +29,7 @@ var get = function(bucket, key, data, callback) {
     request.get(host + ":" + port + "/riak/" + bucket + '/' + key)
         .set('Content-Type', 'application/json')
         .send(data)
-        .end(callback());
+        .end(callback);
 };
 
-module.exports = {post: post, put: put, del: del};
+module.exports = {post: post, put: put, del: del, get: get};

@@ -1,25 +1,21 @@
 var requireFrom = require('require-from');
-var riakWrite = requireFrom('exports', module, '../riak_access/riak_write.js');
+var objectDB = requireFrom('exports', module, '../db_access/riak.js');
 
-var eventToObjectDB = function(type, key, data) {
+var eventToObjectDB = function(event) {
 
-    //Convention: bucket_action
-
-    var types = type.split('_');
+    //Convention: [test-]bucket_action
+    var key = event.key || null;
+    var data = event.data;
+    var types = event.type.split('_');
     var bucket = types[0];
     var action = types[1];
 
     if (action == 'create'){
-
-        riakWrite.post(bucket, key, data);
-
+        objectDB.post(bucket, key, data);
     } else if (action == 'update'){
-
-        riakWrite.put(bucket, key, data);
-
+        objectDB.put(bucket, key, data);
     } else if (action == 'delete'){
-
-        riakWrite.del(bucket, key, data);
+        objectDB.del(bucket, key, data);
     }
 
 };

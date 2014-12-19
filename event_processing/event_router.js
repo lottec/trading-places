@@ -1,9 +1,12 @@
 var requireFrom = require('require-from');
-var riakWrite = requireFrom('exports', module, '../riak_access/riak_write.js');
+var eventDB = requireFrom('exports', module, '../db_access/riak.js'); // require library for database being used for events
+var assembler = requireFrom('exports', module, '../event_assembling/event_assembler.js');
 
 var sendEvent = function(event, callback) {
+    var key = event.key || null;
     var eventJSON = {timestamp: Date.now(), data: event.data};
-    riakWrite.post(event.type, null, eventJSON, callback);
+    eventDB.post(event.type, key, eventJSON, callback);
+    assembler.eventToObjectDB(event);
 };
 
 module.exports = {sendEvent: sendEvent};

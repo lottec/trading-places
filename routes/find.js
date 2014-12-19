@@ -16,13 +16,13 @@ var getAllTeamMembers = function(req, callback) {
     var i = 1;
 
     request
-        .get(host + ":" + port + "/buckets/mt-add-team-member/keys?keys=true")
+        .get(host + ":" + port + "/buckets/test-team-member_create/keys?keys=true")
         .end(function(error, result){
 
             var keys = JSON.parse(result.text).keys;
             keys.forEach(function(key) {
                 request
-                    .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
+                    .get(host + ":" + port + "/riak/test-team-member_create/" + key)
                     .end(function(error, result){
 
                         try {

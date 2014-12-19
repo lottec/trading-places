@@ -15,7 +15,7 @@ var loginPost = function(req, res) {
   if (username && password) {
 
     request
-    .get(host + ":" + port + "/riak/mt-register/" + username)
+    .get(host + ":" + port + "/riak/test-user_create/" + username)
     .end(function(result) {
           var invalid = true;
 
@@ -104,7 +104,7 @@ var loginPost = function(req, res) {
       res.redirect('/register');
     } else {
       request
-          .get(host + ":" + port + "/riak/mt-register/" + username)
+          .get(host + ":" + port + "/riak/test-user_create/" + username)
           .end(function(result){
             try {
               if (result.body.data.password) {
@@ -119,7 +119,7 @@ var loginPost = function(req, res) {
             } else {
               eventProcessor.sendEvent(
                   {
-                    "type": "mt-register",
+                    "type": "test-user_create",
                     "key": username,
                     "data": {
                       "username": username,
@@ -135,24 +135,7 @@ var loginPost = function(req, res) {
                     res.redirect('/');
                   }
               );
-              //request.post(host + ":" + port + "/riak/mt-register/" + username)
-              //    .set('Content-Type', 'application/json')
-              //    .send({
-              //      "event": "registration",
-              //      "timestamp": Date.now(),
-              //      "data": {
-              //        "username": username,
-              //        "password": hash,
-              //        "email": req.body.email,
-              //        "first_name": req.body.first_name,
-              //        "surname": req.body.surname,
-              //        "num_team_members": req.body.num_team_members,
-              //        "department": req.body.department
-              //      }
-              //    })
-              //    .end(function () {
-              //      res.redirect('/');
-              //    });
+
             }
           });
     }

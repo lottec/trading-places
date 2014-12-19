@@ -6,6 +6,7 @@ var host = 'http://db.cistechfutures.net';
 var port = 8098;
 var validator = require('validator');
 var eventProcessor = requireFrom('exports', module, '../event_processing/event_router.js');
+var query = require('../query/query.js');
 
 
 router.get('/', function(req,res) {
@@ -20,7 +21,7 @@ var addPost = function(req, res) {
         res.redirect('/');
     } else {
         request
-            .get(host + ":" + port + "/riak/mt-register/" + req.session.user.username)
+            .get(host + ":" + port + "/riak/test-user_create/" + req.session.user.username)
             .end(function(result) {
                 var manager_email = result.body.data.email;
                 var invalid = false;
@@ -35,7 +36,7 @@ var addPost = function(req, res) {
                 } else {
                     eventProcessor.sendEvent(
                         {
-                            "type": "mt-add-team-member",
+                            "type": "test-team-member_create",
                             "data": {
                                 "manager_email": manager_email,
                                 "first_name": req.body.first_name,
@@ -71,33 +72,59 @@ var getTeamMembers = function(req, callback) {
     var i = 1;
 
     request
-        .get(host + ":" + port + "/buckets/mt-add-team-member/keys?keys=true")
-        .end(function(error, result){
+        .get(host + ":" + port + "/buckets/test-team-member_create/keys?keys=true")
+        .end(function(error, result) {
             var keys = JSON.parse(result.text).keys;
+            console.log(keys);
 
-            keys.forEach(function(key) {
-                request
-                    .get(host + ":" + port + "/riak/mt-add-team-member/" + key)
-                    .end(function(error, result){
+            if (keys.length) {
+                keys.forEach(function (key) {
 
-                        try {
-                            var json = JSON.parse(result.text);
+                    //query.getObjectWithKey('team-member', key,
+                    //    function(error, result){
+                    //        try {
+                    //            var json = JSON.parse(result.text);
+                    //
+                    //            if (json.data.manager == req.session.user.username) {
+                    //                json.data['key'] = key;
+                    //                teamMembers.push(json);
+                    //            }
+                    //        } catch (e) {
+                    //
+                    //        }
+                    //
+                    //        if (i == keys.length) {
+                    //            callback(teamMembers);
+                    //        }
+                    //        i++;
+                    //    });
 
-                            if (json.data.manager == req.session.user.username) {
-                                json.data['key'] = key;
-                                teamMembers.push(json);
+
+                    request
+                        .get(host + ":" + port + "/riak/test-team-member_create/" + key)
+                        .end(function (error, result) {
+
+                            try {
+                                var json = JSON.parse(result.text);
+
+                                if (json.data.manager == req.session.user.username) {
+                                    json.data['key'] = key;
+                                    teamMembers.push(json);
+                                }
+                            } catch (e) {
+
                             }
-                        } catch (e) {
 
-                        }
+                            if (i == keys.length) {
+                                callback(teamMembers);
+                            }
+                            i++;
+                        });
 
-                        if (i == keys.length) {
-                            callback(teamMembers);
-                        }
-                        i++;
-                    });
-
-            });
+                });
+            } else {
+                callback(teamMembers);
+            }
         });
 };
 
