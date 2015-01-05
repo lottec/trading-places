@@ -16,59 +16,60 @@ block content
                         span Availability
                     td.header
                         span Request
-                if !team_members.length
-                    td(colspan="4") There are currently no people available
-                else
-                    each member in team_members
-                        tr.member-row
-                            td.skills(valign="top")
-                                if !member.data.expert && !member.data.intermediate && !member.data.basic
-                                    span No skills added
-                                if member.data.expert
-                                    div.skill-header Expert
-                                    div.skill-content
-                                        div(data-tags-input-name="expert_skills_list_#{member.data.key}", id="expertskillslist-#{member.data.key}")
-                                    script.
-                                        var expertSkillsList = '#{member.data.expert}';
-                                        var expertSkills = expertSkillsList.split(',');
+                if team_members
+                    if !team_members.length
+                        td(colspan="4") There are currently no people available
+                    else
+                        each member in team_members
+                            tr.member-row
+                                td.skills(valign="top")
+                                    if !member.data.expert && !member.data.intermediate && !member.data.basic
+                                        span No skills added
+                                    if member.data.expert
+                                        div.skill-header Expert
+                                        div.skill-content
+                                            div(data-tags-input-name="expert_skills_list_#{member.data.key}", id="expertskillslist-#{member.data.key}")
+                                        script.
+                                            var expertSkillsList = '#{member.data.expert}';
+                                            var expertSkills = expertSkillsList.split(',');
 
-                                        $('#expertskillslist-#{member.data.key}').tagging();
-                                        $("#expertskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            $('#expertskillslist-#{member.data.key}').tagging();
+                                            $("#expertskillslist-#{member.data.key} .type-zone").css("display", "none");
 
-                                        expertSkills.map(function (skill) {
-                                            $('#expertskillslist-#{member.data.key}').tagging("add", skill);
-                                        });
-                                if member.data.intermediate
-                                    div.skill-header Intermediate
-                                    div.skill-content
-                                        div(data-tags-input-name="intermediate_skills_list_#{member.data.key}", id="intermediateskillslist-#{member.data.key}")
-                                    script.
-                                        var intermediateSkillsList = '#{member.data.intermediate}';
-                                        var intermediateSkills = intermediateSkillsList.split(',');
-                                        $('#intermediateskillslist-#{member.data.key}').tagging();
-                                        $("#intermediateskillslist-#{member.data.key} .type-zone").css("display", "none");
-                                        intermediateSkills.map(function (skill) {
-                                            $('#intermediateskillslist-#{member.data.key}').tagging("add", skill);
-                                        });
-                                if member.data.basic
-                                    div.skill-header Basic
-                                    div.skill-content
-                                        div(data-tags-input-name="basic_skills_list_#{member.data.key}", id="basicskillslist-#{member.data.key}")
-                                    script.
-                                        var basicSkillsList = '#{member.data.basic}';
-                                        var basicSkills = basicSkillsList.split(',');
-                                        $('#basicskillslist-#{member.data.key}').tagging();
-                                        $("#basicskillslist-#{member.data.key} .type-zone").css("display", "none");
-                                        basicSkills.map(function (skill) {
-                                            $('#basicskillslist-#{member.data.key}').tagging("add", skill);
-                                        });
-                            td(valign="top")
-                                span #{member.data.job_title}
-                            td(valign="top")
-                                span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
-                            td(valign="top")
-                                div.request-link-container
-                                    a(href="#dialog", name="modal", class="request-link", onclick="resetWindows(); updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}', '#{member.data.manager_name}');") Request
+                                            expertSkills.map(function (skill) {
+                                                $('#expertskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
+                                    if member.data.intermediate
+                                        div.skill-header Intermediate
+                                        div.skill-content
+                                            div(data-tags-input-name="intermediate_skills_list_#{member.data.key}", id="intermediateskillslist-#{member.data.key}")
+                                        script.
+                                            var intermediateSkillsList = '#{member.data.intermediate}';
+                                            var intermediateSkills = intermediateSkillsList.split(',');
+                                            $('#intermediateskillslist-#{member.data.key}').tagging();
+                                            $("#intermediateskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            intermediateSkills.map(function (skill) {
+                                                $('#intermediateskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
+                                    if member.data.basic
+                                        div.skill-header Basic
+                                        div.skill-content
+                                            div(data-tags-input-name="basic_skills_list_#{member.data.key}", id="basicskillslist-#{member.data.key}")
+                                        script.
+                                            var basicSkillsList = '#{member.data.basic}';
+                                            var basicSkills = basicSkillsList.split(',');
+                                            $('#basicskillslist-#{member.data.key}').tagging();
+                                            $("#basicskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            basicSkills.map(function (skill) {
+                                                $('#basicskillslist-#{member.data.key}').tagging("add", skill);
+                                            });
+                                td(valign="top")
+                                    span #{member.data.job_title}
+                                td(valign="top")
+                                    span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
+                                td(valign="top")
+                                    div.request-link-container
+                                        a(href="#dialog", name="modal", class="request-link", onclick="resetWindows(); updateModalFields('#{member.data.key}', '#{member.data.manager}', '#{member.data.manager_email}', '#{member.data.manager_name}');") Request
         div(id="boxes")
             div(id="dialog", class="window")
                 div(id="confirm-container")

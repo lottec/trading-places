@@ -4,9 +4,10 @@
 var express = require('express');
 var router = express.Router();
 var request = require('superagent');
-var host = 'http://db.cistechfutures.net';
-var port = 8098;
-
+//var host = 'http://db.cistechfutures.net';
+//var port = 8098;
+var host = 'http://localhost';
+var port = 10018;
 router.get('/deletebucket/:bucket', function(req,res) {
     //res.render('find', { title: 'Find' });
     purgeBucket(req, function(teamMembers) {

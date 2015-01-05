@@ -4,9 +4,7 @@ var express = require('express');
 var bcrypt = require('bcrypt');
 var validator = require('validator');
 var router = express.Router();
-var request = require('superagent');
-var host = 'http://db.cistechfutures.net';
-var port = 8098;
+var query = require('../query/query.js');
 
 var loginPost = function(req, res) {
   var username = req.body.username.toLowerCase();
@@ -14,20 +12,18 @@ var loginPost = function(req, res) {
 
   if (username && password) {
 
-    request
-    .get(host + ":" + port + "/riak/test-user_create/" + username)
-    .end(function(result) {
+      query.getObjectWithKey('test-user', username, function(result) {
           var invalid = true;
 
           try {
-            var hash = result.body.data.password;
+              var hash = result.body.password;
 
-            if (hash) {
-              if (bcrypt.compareSync(password, hash)) {
-                invalid = false;
-                req.session.user = {username: username, full_name: result.body.data.first_name + ' ' + result.body.data.surname, email: result.body.data.email};
+              if (hash) {
+                  if (bcrypt.compareSync(password, hash)) {
+                      invalid = false;
+                      req.session.user = {username: username, full_name: result.body.first_name + ' ' + result.body.surname, email: result.body.email};
+                  }
               }
-            }
           } catch(error) {
               invalid = true;
           }
@@ -35,19 +31,19 @@ var loginPost = function(req, res) {
 
           if (!invalid) {
 
-            res.redirect(callbackURLParam?callbackURLParam:'/mypeople');
+              res.redirect(callbackURLParam?callbackURLParam:'/mypeople');
 
           } else {
 
-            var url = '/?invalid=' + invalid;
-            if (callbackURLParam) {
-              url = url + '&callbackURL=' + callbackURLParam;
-            }
+              var url = '/?invalid=' + invalid;
+              if (callbackURLParam) {
+                  url = url + '&callbackURL=' + callbackURLParam;
+              }
 
-            res.redirect(url);
+              res.redirect(url);
 
           }
-    });
+      });
 
   } else {
     res.redirect('/');
@@ -103,45 +99,44 @@ var loginPost = function(req, res) {
     if (invalid) {
       res.redirect('/register');
     } else {
-      request
-          .get(host + ":" + port + "/riak/test-user_create/" + username)
-          .end(function(result){
+
+        query.getObjectWithKey("test-user", username, function(result){
             try {
-              if (result.body.data.password) {
-                invalid = true;
-              }
+                if (result.body.password) {
+                    invalid = true;
+                }
             } catch(error) {
 
             }
 
             if (invalid) {
-              res.redirect('/register/?user_exists=true');
+                res.redirect('/register/?user_exists=true');
             } else {
-              eventProcessor.sendEvent(
-                  {
-                    "type": "test-user_create",
-                    "key": username,
-                    "data": {
-                      "username": username,
-                      "password": hash,
-                      "email": req.body.email,
-                      "first_name": req.body.first_name,
-                      "surname": req.body.surname,
-                      "num_team_members": req.body.num_team_members,
-                      "department": req.body.department
+                eventProcessor.sendEvent(
+                    {
+                        "type": "test-user_create",
+                        "key": username,
+                        "data": {
+                            "username": username,
+                            "password": hash,
+                            "email": req.body.email,
+                            "first_name": req.body.first_name,
+                            "surname": req.body.surname,
+                            "num_team_members": req.body.num_team_members,
+                            "department": req.body.department
+                        }
+                    },
+                    function() {
+                        res.redirect('/');
                     }
-                  },
-                  function() {
-                    res.redirect('/');
-                  }
-              );
+                );
 
             }
-          });
+        });
     }
   };
 
   router.post('/register', registerPost);
 
   module.exports = router;
-  module.testExports = {loginPost: loginPost, isLoggedInGet: isLoggedInGet, logoutGet: logoutGet, registerPost: registerPost, request: request, host: host, port: port};
+  module.testExports = {loginPost: loginPost, isLoggedInGet: isLoggedInGet, logoutGet: logoutGet, registerPost: registerPost};

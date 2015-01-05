@@ -1,5 +1,4 @@
-var requireFrom = require('require-from');
-var objectDB = requireFrom('exports', module, '../db_access/riak.js');
+var objectDB = require('../db_access/riak.js');
 
 var eventToObjectDB = function(event) {
 
@@ -9,6 +8,10 @@ var eventToObjectDB = function(event) {
     var types = event.type.split('_');
     var bucket = types[0];
     var action = types[1];
+
+    console.log('key: ' + key);
+    console.log('bucket: ' + bucket);
+    console.log('action: ' + action);
 
     if (action == 'create'){
         objectDB.post(bucket, key, data);

@@ -1,5 +1,7 @@
 var request = require('superagent');
 var host = 'http://db.cistechfutures.net';
+//var host = 'http://localhost';
+//var port = 10018;
 var port = 8098;
 
 var post = function(bucket, key, data, callback) {

@@ -547,6 +547,45 @@ input[type=submit] {
   padding: 5px 0px 5px 5px;
 }
 
+.team-members-container .skill-content-edit {
+  padding: 5px 0px 5px 5px;
+  text-align: left;
+}
+
+.team-members-container .skill-content-edit .tagging {
+  width: 262px;
+  margin: 0;
+}
+
+.team-members-container .names-edit-container {
+  width: 100px;
+}
+
+
+.team-members-container .job-title-edit-container input[type=text] {
+  height: 20px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  border: 1px solid #898989;
+  box-shadow: 0 0 2px #989898;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 105px !important;
+}
+
+.team-members-container .names-edit-container input[type=text] {
+  height: 20px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  border: 1px solid #898989;
+  box-shadow: 0 0 2px #989898;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 105px !important;
+}
+
 .team-members-container .skill-content .tagging {
   border: 0 none;
   background: transparent;

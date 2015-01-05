@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var request = require('superagent');
-var host = 'http://db.cistechfutures.net';
-var port = 8098;
+//var host = 'http://db.cistechfutures.net';
+//var port = 8098;
+var host = 'http://localhost';
+var port = 10018;
 var nodemailer = require('nodemailer');
 var requireFrom = require('require-from');
 var eventProcessor = requireFrom('exports', module, '../event_processing/event_router.js');

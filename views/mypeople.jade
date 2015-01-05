@@ -62,66 +62,120 @@ block content
                         td.header
                             span Skills &amp; Ability Levels
                         td.header
-                            span Job Description
-                        //td.header
-                            span Availability
+                            span Job Title
                         td.header
                             span Duration of Availability
+                        td.header
+                            span Action
                     if !team_members.length
-                        td(colspan="4") You haven't added any team members
+                        td(colspan="5") You haven't added any team members
                     else
                         each member in team_members
-                            tr(id="#{member.data.key}", class='member-row')
-                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
-                                    span #{member.data.surname}, #{member.data.first_name}
-                                td.skills(valign="top", class=(team_member_id === member.data.key)?'target':'')
-                                    if !member.data.expert && !member.data.intermediate && !member.data.basic
-                                        span No skills added
-                                    if member.data.expert
+                            form
+                                tr(id="#{member.key}", class='member-row', onclick="$('##{member.key}').hide(); $('##{member.key}-edit').show();")
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        span #{member.surname}, #{member.first_name}
+                                    td.skills(valign="top", class=(team_member_id === member.key)?'target':'', style="width: 280px;")
+                                        if !member.expert && !member.intermediate && !member.basic
+                                            span No skills added
+                                        if member.expert
+                                            div.skill-header Expert
+                                            div.skill-content
+                                                div(data-tags-input-name="expert_skills_list_#{member.key}", id="expertskillslist-#{member.key}")
+                                            script.
+                                                var expertSkillsList = '#{member.expert}';
+                                                var expertSkills = expertSkillsList.split(',');
+
+                                                $('#expertskillslist-#{member.key}').tagging();
+                                                $("#expertskillslist-#{member.key} .type-zone").css("display", "none");
+
+                                                expertSkills.map(function (skill) {
+                                                    $('#expertskillslist-#{member.key}').tagging("add", skill);
+                                                });
+                                        if member.intermediate
+                                            div.skill-header Intermediate
+                                            div.skill-content
+                                                div(data-tags-input-name="intermediate_skills_list_#{member.key}", id="intermediateskillslist-#{member.key}")
+                                            script.
+                                                var intermediateSkillsList = '#{member.intermediate}';
+                                                var intermediateSkills = intermediateSkillsList.split(',');
+                                                $('#intermediateskillslist-#{member.key}').tagging();
+                                                $("#intermediateskillslist-#{member.key} .type-zone").css("display", "none");
+                                                intermediateSkills.map(function (skill) {
+                                                    $('#intermediateskillslist-#{member.key}').tagging("add", skill);
+                                                });
+                                        if member.basic
+                                            div.skill-header Basic
+                                            div.skill-content
+                                                div(data-tags-input-name="basic_skills_list_#{member.key}", id="basicskillslist-#{member.key}")
+                                            script.
+                                                var basicSkillsList = '#{member.basic}';
+                                                var basicSkills = basicSkillsList.split(',');
+                                                $('#basicskillslist-#{member.key}').tagging();
+                                                $("#basicskillslist-#{member.key} .type-zone").css("display", "none");
+                                                basicSkills.map(function (skill) {
+                                                    $('#basicskillslist-#{member.key}').tagging("add", skill);
+                                                });
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        span #{member.job_title}
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        span #{member.availability_duration.equality} #{member.availability_duration.number} #{member.availability_duration.unit}
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        div
+                                            input(type="submit", value="Delete")
+                            form(method="POST", action='/mypeople/update_team_member')
+                                tr(id="#{member.key}-edit", class='member-row', style="display: none")
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'', style="width: 125px;")
+                                        div.names-edit-container
+                                            input(type="hidden", id="key", value="#{member.key}")
+                                            div
+                                                input(type="text", id="first_name", value="#{member.first_name}", placeholder="First name")
+                                            div
+                                                input(type="text", id="surname", value="#{member.surname}", placeholder="Surname")
+                                    td.skills(valign="top", class=(team_member_id === member.key)?'target':'', style="width: 250px;")
                                         div.skill-header Expert
-                                        div.skill-content
-                                            div(data-tags-input-name="expert_skills_list_#{member.data.key}", id="expertskillslist-#{member.data.key}")
+                                        div.skill-content-edit
+                                            div(data-tags-input-name="expert_skills_list_#{member.key}", id="expertskillslist-edit-#{member.key}")
                                         script.
-                                            var expertSkillsList = '#{member.data.expert}';
+                                            var expertSkillsList = '#{member.expert}';
                                             var expertSkills = expertSkillsList.split(',');
 
-                                            $('#expertskillslist-#{member.data.key}').tagging();
-                                            $("#expertskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            $('#expertskillslist-edit-#{member.key}').tagging();
 
                                             expertSkills.map(function (skill) {
-                                                $('#expertskillslist-#{member.data.key}').tagging("add", skill);
+                                                $('#expertskillslist-edit-#{member.key}').tagging("add", skill);
                                             });
-                                    if member.data.intermediate
                                         div.skill-header Intermediate
-                                        div.skill-content
-                                            div(data-tags-input-name="intermediate_skills_list_#{member.data.key}", id="intermediateskillslist-#{member.data.key}")
+                                        div.skill-content-edit
+                                            div(data-tags-input-name="intermediate_skills_list_#{member.key}", id="intermediateskillslist-edit-#{member.key}")
                                         script.
-                                            var intermediateSkillsList = '#{member.data.intermediate}';
+                                            var intermediateSkillsList = '#{member.intermediate}';
                                             var intermediateSkills = intermediateSkillsList.split(',');
-                                            $('#intermediateskillslist-#{member.data.key}').tagging();
-                                            $("#intermediateskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            $('#intermediateskillslist-edit-#{member.key}').tagging();
+                                            $("#intermediateskillslist-edit-#{member.key} .type-zone").css("display", "none");
                                             intermediateSkills.map(function (skill) {
-                                                $('#intermediateskillslist-#{member.data.key}').tagging("add", skill);
+                                                $('#intermediateskillslist-edit-#{member.key}').tagging("add", skill);
                                             });
-                                    if member.data.basic
                                         div.skill-header Basic
-                                        div.skill-content
-                                            div(data-tags-input-name="basic_skills_list_#{member.data.key}", id="basicskillslist-#{member.data.key}")
+                                        div.skill-content-edit
+                                            div(data-tags-input-name="basic_skills_list_#{member.key}", id="basicskillslist-edit-#{member.key}")
                                         script.
-                                            var basicSkillsList = '#{member.data.basic}';
+                                            var basicSkillsList = '#{member.basic}';
                                             var basicSkills = basicSkillsList.split(',');
-                                            $('#basicskillslist-#{member.data.key}').tagging();
-                                            $("#basicskillslist-#{member.data.key} .type-zone").css("display", "none");
+                                            $('#basicskillslist-edit-#{member.key}').tagging();
+                                            $("#basicskillslist-edit-#{member.key} .type-zone").css("display", "none");
                                             basicSkills.map(function (skill) {
-                                                $('#basicskillslist-#{member.data.key}').tagging("add", skill);
+                                                $('#basicskillslist-edit-#{member.key}').tagging("add", skill);
                                             });
-                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
-                                    span #{member.data.job_title}
-                                //td(valign="top", class=(team_member_id === member.data.key)?'target':'')
-                                    if (member.data.availability == true)
-                                        div.available-icon
-                                td(valign="top", class=(team_member_id === member.data.key)?'target':'')
-                                    span #{member.data.availability_duration.equality} #{member.data.availability_duration.number} #{member.data.availability_duration.unit}
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        div.job-title-edit-container
+                                            input(type="text", id="job_title", value="#{member.job_title}")
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        div.availability-container
+                                            span #{member.availability_duration.equality} #{member.availability_duration.number} #{member.availability_duration.unit}
+                                    td(valign="top", class=(team_member_id === member.key)?'target':'')
+                                        div
+                                            input(type="submit", value="Save")
 
         script.
             var options = {
